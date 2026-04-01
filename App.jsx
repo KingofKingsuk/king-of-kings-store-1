@@ -4,27 +4,26 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'ELYON Monogram Tee', price: '£29.99', image: '/elyon.png' },
-        { name: 'The Holy One Tee', price: '£34.99', image: '/the holy one.png' },
-        { name: 'The Almighty Tee', price: '£29.99', image: '/the almighty.png' }
+        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el elyon 1 mockup white.png' },
+        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/el elyon 2 mockup creme.png' },
+        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/alyon 5.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£34.99', image: '/King of Kings crest.png' },
-        { name: 'Lion of Judah Tee', price: '£34.99', image: '/King of Kings 6.png' },
-        { name: 'Prince of Peace Tee', price: '£29.99', image: '/the prince of peace.png' }
+        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King of Kings black silky mockup.png' },
+        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King of Kings mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh saboath mockup.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'First and The Last Tee', price: '£29.99', image: '/the first and the last.png' },
-        { name: 'Jesus Is King Tee', price: '£29.99', image: '/jesus is king.png' },
-        { name: 'Saved By Grace Tee', price: '£29.99', image: '/saved by grace.png' }
+        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/the first and the last mockup black.png' },
+        { name: 'The Living God Tee', price: '£29.99', image: '/the living god mockup white.png' }
       ]
     }
   ];
@@ -56,19 +55,18 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {collection.products.map((product, i) => (
               <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-100">
-                <div className="bg-gray-100 h-96 flex items-center justify-center p-8">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="max-h-full max-w-full object-contain"
-                    onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x500?text=Design+Coming+Soon';
-                    }}
-                  />
-                </div>
+                <img 
+                  src={product.image} 
+                  alt={product.name} 
+                  className="w-full h-96 object-cover"
+                  onError={(e) => {
+                    console.error('Failed to load:', product.image);
+                    e.target.src = 'https://via.placeholder.com/400x500?text=Image+Loading';
+                  }}
+                />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <p className="text-neutral-500 mt-1">Premium quality tee • Oversized fit</p>
+                  <p className="text-neutral-500 mt-1">Premium quality • Oversized fit</p>
                   <div className="flex items-center justify-between mt-4">
                     <span className="text-lg font-semibold">{product.price}</span>
                     <button onClick={checkout} className="px-5 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition">
