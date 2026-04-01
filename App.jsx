@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 function App() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const collections = [
     {
       title: 'Signature Collection',
@@ -51,6 +55,11 @@ function App() {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
   };
 
+  // 2.5 inches = 240px (assuming 96px per inch)
+  const imageSize = '240px';
+  // Popup size 4.5 inches = 432px
+  const popupSize = '432px';
+
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Hero Section */}
@@ -76,7 +85,7 @@ function App() {
             <p style={{ color: '#666', margin: '0' }}>{collection.subtitle}</p>
           </div>
 
-          {/* GRID LAYOUT - Fixed alignment */}
+          {/* GRID LAYOUT */}
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -93,34 +102,40 @@ function App() {
                 display: 'flex',
                 flexDirection: 'column'
               }}>
-                {/* Image Container - Fixed height and alignment */}
-                <div style={{ 
-                  padding: '30px 20px', 
-                  textAlign: 'center', 
-                  backgroundColor: '#fafafa',
-                  minHeight: '240px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
+                {/* Image Container - Clickable */}
+                <div 
+                  style={{ 
+                    padding: '30px 20px', 
+                    textAlign: 'center', 
+                    backgroundColor: '#fafafa',
+                    minHeight: '280px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
+                  onClick={() => setSelectedImage(product.image)}
+                >
                   <img 
                     src={product.image} 
                     alt={product.name} 
                     style={{ 
-                      width: '140px', 
+                      width: imageSize,
                       height: 'auto', 
                       display: 'block',
-                      objectFit: 'contain'
+                      objectFit: 'contain',
+                      transition: 'transform 0.2s ease'
                     }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://placehold.co/140x180/e2e8f0/666?text=Coming+Soon';
-                      e.target.style.width = '120px';
+                      e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Coming+Soon';
                     }}
                   />
                 </div>
                 
-                {/* Product Info - Fixed alignment */}
+                {/* Product Info */}
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 8px 0', textAlign: 'center' }}>{product.name}</h3>
                   <p style={{ color: '#999', fontSize: '13px', margin: '0 0 20px 0', textAlign: 'center' }}>Premium quality • Oversized fit</p>
@@ -168,6 +183,65 @@ function App() {
           </button>
         </div>
       </div>
+
+      {/* Lightbox Popup */}
+      {selectedImage && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            cursor: 'pointer'
+          }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '12px',
+              maxWidth: popupSize,
+              width: '90%',
+              textAlign: 'center'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Product preview"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: popupSize,
+                display: 'block',
+                margin: '0 auto'
+              }}
+            />
+            <button
+              onClick={() => setSelectedImage(null)}
+              style={{
+                marginTop: '20px',
+                padding: '8px 24px',
+                backgroundColor: 'black',
+                color: 'white',
+                border: 'none',
+                borderRadius: '30px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
