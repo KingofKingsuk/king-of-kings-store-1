@@ -4,26 +4,26 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el elyon 1 mockup white.png' },
-        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/el elyon 2 mockup creme.png' },
-        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/alyon 5.png' }
+        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el%20elyon%201%20mockup%20white.png' },
+        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/el%20elyon%202%20mockup%20creme.png' },
+        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/alyon%205.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King of Kings black silky mockup.png' },
-        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King of Kings mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh saboath mockup.png' }
+        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King%20of%20Kings%20black%20silky%20mockup.png' },
+        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King%20of%20Kings%20mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh%20saboath%20mockup.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/the first and the last mockup black.png' },
-        { name: 'The Living God Tee', price: '£29.99', image: '/the living god mockup white.png' }
+        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/the%20first%20and%20the%20last%20mockup%20black.png' },
+        { name: 'The Living God Tee', price: '£29.99', image: '/the%20living%20god%20mockup%20white.png' }
       ]
     }
   ];
@@ -55,15 +55,19 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {collection.products.map((product, i) => (
               <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-100">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="w-full h-96 object-cover"
-                  onError={(e) => {
-                    console.error('Failed to load:', product.image);
-                    e.target.src = 'https://via.placeholder.com/400x500?text=Image+Loading';
-                  }}
-                />
+                {/* Fixed container size for consistent product images */}
+                <div className="w-full flex items-center justify-center bg-gray-50 p-6">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-40 h-auto object-contain"  // 40 = 2.5 inches approx (40*4px = 160px ≈ 1.67 inches)
+                    style={{ maxWidth: '160px', height: 'auto' }}
+                    onError={(e) => {
+                      console.error('Failed to load:', product.image);
+                      e.target.src = 'https://via.placeholder.com/160x200?text=Image+Not+Found';
+                    }}
+                  />
+                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold">{product.name}</h3>
                   <p className="text-neutral-500 mt-1">Premium quality • Oversized fit</p>
