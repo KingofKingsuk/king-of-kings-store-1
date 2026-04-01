@@ -1,4 +1,4 @@
-export default function Home() {
+function App() {
   const collections = [
     {
       title: 'Signature Collection',
@@ -92,3 +92,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default App;
