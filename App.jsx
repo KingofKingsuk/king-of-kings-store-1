@@ -55,7 +55,6 @@ function App() {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
   };
 
-  // 2.5 inches = 240px, Popup 6 inches = 576px
   const imageSize = '240px';
   const popupSize = '576px';
 
@@ -84,7 +83,6 @@ function App() {
             <p style={{ color: '#666', margin: '0' }}>{collection.subtitle}</p>
           </div>
 
-          {/* GRID LAYOUT */}
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -101,7 +99,6 @@ function App() {
                 display: 'flex',
                 flexDirection: 'column'
               }}>
-                {/* Image Container - Clickable */}
                 <div 
                   style={{ 
                     padding: '30px 20px', 
@@ -130,11 +127,11 @@ function App() {
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Coming+Soon';
+                      console.error('Failed to load:', product.image);
                     }}
                   />
                 </div>
                 
-                {/* Product Info */}
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 8px 0', textAlign: 'center' }}>{product.name}</h3>
                   <p style={{ color: '#999', fontSize: '13px', margin: '0 0 20px 0', textAlign: 'center' }}>Premium quality • Oversized fit</p>
@@ -183,7 +180,7 @@ function App() {
         </div>
       </div>
 
-      {/* Lightbox Popup - 6 inches */}
+      {/* Lightbox Popup */}
       {selectedImage && (
         <div
           style={{
