@@ -4,26 +4,26 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'ELYON Monogram Tee', price: '£29.99', image: '/images/elyon-1.jpeg' },
-        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/images/the-holy-one.png' },
-        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/images/the-almighty.png' }
+        { name: 'ELYON Monogram Tee', price: '£29.99', image: '/elyon.png' },
+        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/the holy one.png' },
+        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/the almighty.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/images/king-of-kings-crest.png' },
-        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/images/lion-of-judah.png' },
-        { name: 'Elyon Noir Tee', price: '£29.99', image: '/images/elyon-2.jpeg' }
+        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King of Kings crest.png' },
+        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King of Kings 6.png' },
+        { name: 'Elyon Noir Tee', price: '£29.99', image: '/alyon 2.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/images/the-first-and-the-last-light.jpeg' },
-        { name: 'The First and The Last Noir Tee', price: '£29.99', image: '/images/the-first-and-the-last-dark.png' }
+        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/the first and the last.png' },
+        { name: 'The First and The Last Noir Tee', price: '£29.99', image: '/the first and the last.png' }
       ]
     }
   ];
@@ -59,10 +59,6 @@ function App() {
                   src={product.image} 
                   alt={product.name} 
                   className="w-full h-96 object-cover"
-                  onError={(e) => {
-                    console.error('Failed to load:', product.image);
-                    e.target.style.display = 'none';
-                  }}
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold">{product.name}</h3>
