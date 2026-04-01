@@ -4,33 +4,33 @@ export default function KingOfKingsHomepage() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'ELYON Monogram Tee', price: '£29.99', image: '/ELYON 1.jpeg' },
-        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/THE HOLY ONE.png' },
-        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/THE ALMIGHTY.png' }
+        { name: 'ELYON Monogram Tee', price: '£29.99', image: '/images/elyon-1.jpeg' },
+        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/images/the-holy-one.png' },
+        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/images/the-almighty.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King of Kings crest 2.png' },
-        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King of Kings 6.png' },
-        { name: 'Elyon Noir Tee', price: '£29.99', image: '/Elyon 2.jpeg' }
+        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/images/king-of-kings-crest.png' },
+        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/images/lion-of-judah.png' },
+        { name: 'Elyon Noir Tee', price: '£29.99', image: '/images/elyon-2.jpeg' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/THE FIRST AND THE LAST.jpeg' },
-        { name: 'The First and The Last Noir Tee', price: '£29.99', image: '/THE FIRST AND THE LAST.png' }
+        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/images/the-first-and-the-last-light.jpeg' },
+        { name: 'The First and The Last Noir Tee', price: '£29.99', image: '/images/the-first-and-the-last-dark.png' }
       ]
     }
-  ]
+  ];
 
   const checkout = () => {
-    window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank')
-  }
+    window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-stone-50 text-black">
@@ -55,7 +55,15 @@ export default function KingOfKingsHomepage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {collection.products.map((product, i) => (
               <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-100">
-                <img src={product.image} alt={product.name} className="w-full h-96 object-cover" />
+                <img 
+                  src={product.image} 
+                  alt={product.name} 
+                  className="w-full h-96 object-cover"
+                  onError={(e) => {
+                    console.error('Failed to load image:', product.image);
+                    e.target.src = 'https://via.placeholder.com/400x500?text=Image+Not+Found';
+                  }}
+                />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold">{product.name}</h3>
                   <p className="text-neutral-500 mt-1">Premium oversized fit</p>
@@ -82,5 +90,5 @@ export default function KingOfKingsHomepage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
