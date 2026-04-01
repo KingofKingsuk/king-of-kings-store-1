@@ -8,45 +8,45 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el%20elyon%201%20mockup%20white.png' },
-        { name: 'The Holy One Tee', price: '£34.99', image: '/the%20holy%20one%20mockup%20Gold%20white.png' },
-        { name: 'The Almighty Tee', price: '£29.99', image: '/the%20almighty%20white%20mockup.png' }
+        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el elyon 1 mockup white.png' },
+        { name: 'The Holy One Tee', price: '£34.99', image: '/the holy one mockup Gold white.png' },
+        { name: 'The Almighty Tee', price: '£29.99', image: '/the almighty white mockup.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£34.99', image: '/King%20of%20Kings%20black%20silky%20mockup.png' },
-        { name: 'King of Kings Black Tee', price: '£34.99', image: '/king%20of%20kings%20black%20mockup.png' },
-        { name: 'The Prince of Peace Tee', price: '£29.99', image: '/the%20prince%20of%20peace%20mockup.png' }
+        { name: 'King of Kings Crest Tee', price: '£34.99', image: '/King of Kings black silky mockup.png' },
+        { name: 'King of Kings Black Tee', price: '£34.99', image: '/king of kings black mockup.png' },
+        { name: 'The Prince of Peace Tee', price: '£29.99', image: '/the prince of peace mockup.png' }
       ]
     },
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
       products: [
-        { name: 'Jesus Died For Me Tee', price: '£34.99', image: '/jesus%20died%20for%20me%20mockup.png' },
-        { name: 'Jesus Christ Tee', price: '£34.99', image: '/jesus%20christ%20mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£34.99', image: '/jesus%20the%20way%20the%20truth%20and%20the%20life%20mock%20up.png' }
+        { name: 'Jesus Died For Me Tee', price: '£34.99', image: '/jesus died for me mockup.png' },
+        { name: 'Jesus Christ Tee', price: '£34.99', image: '/jesus christ mockup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£34.99', image: '/jesus the way the truth and the life mock up.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Tee', price: '£29.99', image: '/the%20first%20and%20the%20last%20mockup%20black.png' },
-        { name: 'The Living God Tee', price: '£29.99', image: '/the%20living%20god%20mockup%20white.png' },
-        { name: 'Light of The World Tee', price: '£29.99', image: '/Light%20of%20the%20world%20mockup.png' }
+        { name: 'The First and The Last Tee', price: '£29.99', image: '/the first and the last mockup black.png' },
+        { name: 'The Living God Tee', price: '£29.99', image: '/the living god mockup white.png' },
+        { name: 'Light of The World Tee', price: '£29.99', image: '/Light of the world mockup.png' }
       ]
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { name: 'Christian Identity Tee', price: '£29.99', image: '/christian%20identity%20mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£24.99', image: '/time%20Is%20Running%20Out%20mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh%20saboath%20mockup.png' }
+        { name: 'Christian Identity Tee', price: '£29.99', image: '/christian identity mockup.png' },
+        { name: 'Time Is Running Out Tee', price: '£24.99', image: '/time Is Running Out mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh saboath mockup.png' }
       ]
     }
   ];
@@ -55,10 +55,9 @@ function App() {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
   };
 
-  // 2.5 inches = 240px (assuming 96px per inch)
+  // 2.5 inches = 240px, Popup 6 inches = 576px
   const imageSize = '240px';
-  // Popup size 4.5 inches = 432px
-  const popupSize = '432px';
+  const popupSize = '576px';
 
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -184,7 +183,7 @@ function App() {
         </div>
       </div>
 
-      {/* Lightbox Popup */}
+      {/* Lightbox Popup - 6 inches */}
       {selectedImage && (
         <div
           style={{
@@ -205,8 +204,8 @@ function App() {
           <div
             style={{
               backgroundColor: 'white',
-              padding: '20px',
-              borderRadius: '12px',
+              padding: '24px',
+              borderRadius: '16px',
               maxWidth: popupSize,
               width: '90%',
               textAlign: 'center'
@@ -228,7 +227,7 @@ function App() {
               onClick={() => setSelectedImage(null)}
               style={{
                 marginTop: '20px',
-                padding: '8px 24px',
+                padding: '10px 28px',
                 backgroundColor: 'black',
                 color: 'white',
                 border: 'none',
