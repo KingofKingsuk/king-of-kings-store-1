@@ -1,69 +1,86 @@
-import React, { useState } from 'react'
-
-export default function App() {
-  const [message, setMessage] = useState('')
-  const [preview, setPreview] = useState('KING OF KINGS')
-
-  const products = [
-    { id: 1, name: 'JESUS IS KING', price: '£24.99' },
-    { id: 2, name: 'FAITH OVER FEAR', price: '£24.99' },
-    { id: 3, name: 'CHILD OF GOD', price: '£29.99' }
+export default function KingOfKingsHomepage() {
+  const collections = [
+    {
+      title: 'Signature Collection',
+      subtitle: 'Luxury typography pieces',
+      products: [
+        { name: 'ELYON Monogram Tee', price: '£29.99', image: '/ELYON 1.jpeg' },
+        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/THE HOLY ONE.png' },
+        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/THE ALMIGHTY.png' }
+      ]
+    },
+    {
+      title: 'Royal Collection',
+      subtitle: 'Crest and kingdom inspired premium wear',
+      products: [
+        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King of Kings crest 2.png' },
+        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King of Kings 6.png' },
+        { name: 'Elyon Noir Tee', price: '£29.99', image: '/Elyon 2.jpeg' }
+      ]
+    },
+    {
+      title: 'Scripture Collection',
+      subtitle: 'Wear the Word boldly',
+      products: [
+        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/THE FIRST AND THE LAST.jpeg' },
+        { name: 'The First and The Last Noir Tee', price: '£29.99', image: '/THE FIRST AND THE LAST.png' }
+      ]
+    }
   ]
-
-  const generate = () => {
-    if (!message) return
-    setPreview(message.toUpperCase())
-  }
 
   const checkout = () => {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank')
   }
 
   return (
-    <div style={{ background: 'linear-gradient(180deg,#000 0%, #111 100%)', minHeight: '100vh', color: '#fff', padding: '40px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '48px' }}>King of Kings</h1>
-      <p style={{ textAlign: 'center', color: '#aaa' }}>Bold Faith. Worn Loud.</p>
-
-      <div style={{ maxWidth: '900px', margin: '40px auto' }}>
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Enter your message"
-          style={{ width: '100%', padding: '15px', fontSize: '18px', borderRadius: '10px' }}
-        />
-
-        <button onClick={generate} style={{ marginTop: '20px', width: '100%', padding: '15px', fontSize: '18px', borderRadius: '10px', border: 'none' }}>
-          Generate Design
+    <div className="min-h-screen bg-stone-50 text-black">
+      <section className="px-8 py-24 text-center bg-gradient-to-br from-stone-100 to-amber-50">
+        <p className="tracking-[0.3em] uppercase text-sm mb-4">Luxury Christian Streetwear</p>
+        <h1 className="text-6xl font-semibold mb-6">King of Kings</h1>
+        <p className="max-w-2xl mx-auto text-xl text-neutral-600 mb-8">
+          Premium faith-led apparel crafted to make belief visible.
+        </p>
+        <button onClick={checkout} className="px-8 py-4 rounded-2xl bg-black text-white text-lg shadow-xl">
+          Shop Best Sellers
         </button>
+      </section>
 
-        <button onClick={checkout} style={{ marginTop: '20px', width: '100%', padding: '15px', fontSize: '18px', background: '#fff', color: '#000', borderRadius: '10px', border: 'none' }}>
-          Buy Now • Secure Checkout
-        </button>
+      {collections.map((collection, idx) => (
+        <section key={idx} className="max-w-7xl mx-auto px-8 py-16">
+          <div className="mb-8">
+            <h2 className="text-4xl font-semibold">{collection.title}</h2>
+            <p className="text-neutral-500 mt-2">{collection.subtitle}</p>
+          </div>
 
-        <div style={{ marginTop: '40px', padding: '80px', background: '#111', textAlign: 'center', fontSize: '36px', fontWeight: 'bold', borderRadius: '18px' }}>
-          {preview}
-        </div>
-
-        <div style={{ marginTop: '50px' }}>
-          <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>Featured Products</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-            {products.map((product) => (
-              <div key={product.id} style={{ background: '#111', padding: '25px', borderRadius: '18px' }}>
-                <div style={{ height: '180px', background: '#000', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>
-                  {product.name}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {collection.products.map((product, i) => (
+              <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-100">
+                <img src={product.image} alt={product.name} className="w-full h-96 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold">{product.name}</h3>
+                  <p className="text-neutral-500 mt-1">Premium oversized fit</p>
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-lg font-semibold">{product.price}</span>
+                    <button onClick={checkout} className="px-5 py-3 rounded-xl bg-black text-white">
+                      Buy Now
+                    </button>
+                  </div>
                 </div>
-                <p style={{ marginTop: '15px', fontSize: '18px', fontWeight: 'bold' }}>{product.name}</p>
-                <p>{product.price}</p>
-                <button onClick={checkout} style={{ width: '100%', padding: '12px', marginTop: '10px', borderRadius: '10px', border: 'none' }}>
-                  Buy with Stripe
-                </button>
               </div>
             ))}
           </div>
+        </section>
+      ))}
+
+      <section className="max-w-7xl mx-auto px-8 py-20">
+        <div className="rounded-3xl bg-black text-white p-12 text-center">
+          <h2 className="text-4xl font-semibold mb-4">Create Your Own Design</h2>
+          <p className="text-neutral-300 mb-8">Personal scripture, declarations, and faith-led typography</p>
+          <button onClick={checkout} className="px-8 py-4 rounded-2xl bg-white text-black text-lg">
+            Start Custom Design
+          </button>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
-
-          
