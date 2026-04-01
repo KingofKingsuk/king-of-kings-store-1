@@ -52,59 +52,68 @@ function App() {
   };
 
   return (
-    <div className="bg-white min-h-screen text-black">
+    <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
       {/* Hero Section */}
-      <section className="px-4 sm:px-8 py-16 sm:py-24 text-center bg-white">
-        <p className="tracking-[0.3em] uppercase text-sm mb-4 text-neutral-500">Luxury Christian Streetwear</p>
-        <h1 className="text-5xl sm:text-7xl font-bold mb-6">King of Kings</h1>
-        <p className="max-w-2xl mx-auto text-lg sm:text-xl text-neutral-600 mb-8 px-4">
+      <div style={{ padding: '80px 20px', textAlign: 'center', backgroundColor: 'white' }}>
+        <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
+        <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
+        <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>
           Premium faith-led apparel crafted to make belief visible.
         </p>
         <button 
-          onClick={checkout} 
-          className="px-8 py-4 rounded-full bg-black text-white text-lg font-medium shadow-lg hover:bg-gray-800 transition duration-300"
+          onClick={checkout}
+          style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer' }}
         >
           Shop Best Sellers
         </button>
-      </section>
+      </div>
 
       {/* Product Collections */}
       {collections.map((collection, idx) => (
-        <section key={idx} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="mb-8 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{collection.title}</h2>
-            <p className="text-neutral-500 mt-2 text-sm sm:text-base">{collection.subtitle}</p>
+        <div key={idx} style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <h2 style={{ fontSize: '36px', fontWeight: 'bold' }}>{collection.title}</h2>
+            <p style={{ color: '#666', marginTop: '8px' }}>{collection.subtitle}</p>
           </div>
 
-          {/* Grid Layout - 3 columns on desktop, 2 on tablet, 1 on mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {/* GRID LAYOUT - This creates 3 columns */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: '32px',
+            alignItems: 'start'
+          }}>
             {collection.products.map((product, i) => (
-              <div 
-                key={i} 
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                {/* Image Container */}
-                <div className="bg-white p-6 flex items-center justify-center min-h-[280px]">
+              <div key={i} style={{ 
+                backgroundColor: 'white', 
+                borderRadius: '24px', 
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                border: '1px solid #f0f0f0'
+              }}>
+                <div style={{ padding: '24px', textAlign: 'center', backgroundColor: 'white' }}>
                   <img 
                     src={product.image} 
                     alt={product.name} 
-                    className="w-36 sm:w-40 h-auto object-contain hover:scale-105 transition-transform duration-300"
-                    style={{ maxWidth: '160px', height: 'auto' }}
+                    style={{ 
+                      width: '160px', 
+                      height: 'auto', 
+                      margin: '0 auto',
+                      display: 'block'
+                    }}
                     onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/160x200?text=Design+Coming+Soon';
+                      e.target.src = 'https://via.placeholder.com/160x200?text=Loading...';
                     }}
                   />
                 </div>
-                
-                {/* Product Info */}
-                <div className="p-5 pt-0 text-center sm:text-left">
-                  <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-                  <p className="text-neutral-400 text-sm mt-1">Premium quality • Oversized fit</p>
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4">
-                    <span className="text-xl font-bold text-gray-900">{product.price}</span>
+                <div style={{ padding: '0 24px 24px 24px', textAlign: 'center' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 'bold' }}>{product.name}</h3>
+                  <p style={{ color: '#999', fontSize: '14px', marginTop: '8px' }}>Premium quality • Oversized fit</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
+                    <span style={{ fontSize: '20px', fontWeight: 'bold' }}>{product.price}</span>
                     <button 
-                      onClick={checkout} 
-                      className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+                      onClick={checkout}
+                      style={{ backgroundColor: 'black', color: 'white', padding: '10px 24px', borderRadius: '12px', border: 'none', cursor: 'pointer' }}
                     >
                       Buy Now
                     </button>
@@ -113,24 +122,22 @@ function App() {
               </div>
             ))}
           </div>
-        </section>
+        </div>
       ))}
 
       {/* Custom Design Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        <div className="rounded-2xl bg-gray-900 text-white p-8 sm:p-12 text-center">
-          <h2 className="text-2xl sm:text-4xl font-bold mb-4">Create Your Own Design</h2>
-          <p className="text-neutral-300 mb-6 max-w-lg mx-auto text-sm sm:text-base">
-            Personal scripture, declarations, and faith-led typography
-          </p>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
+        <div style={{ backgroundColor: '#111', color: 'white', padding: '60px', textAlign: 'center', borderRadius: '24px' }}>
+          <h2 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '16px' }}>Create Your Own Design</h2>
+          <p style={{ color: '#ccc', marginBottom: '24px' }}>Personal scripture, declarations, and faith-led typography</p>
           <button 
-            onClick={checkout} 
-            className="px-6 py-3 rounded-full bg-white text-gray-900 text-base font-medium hover:bg-gray-100 transition-colors"
+            onClick={checkout}
+            style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '32px', border: 'none', cursor: 'pointer', fontSize: '16px' }}
           >
             Start Custom Design
           </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
