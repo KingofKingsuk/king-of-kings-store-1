@@ -5,25 +5,26 @@ function App() {
       subtitle: 'Luxury typography pieces',
       products: [
         { name: 'ELYON Monogram Tee', price: '£29.99', image: '/elyon.png' },
-        { name: 'The Holy One Gold Foil Tee', price: '£34.99', image: '/the holy one.png' },
-        { name: 'The Almighty Statement Tee', price: '£29.99', image: '/the almighty.png' }
+        { name: 'The Holy One Tee', price: '£34.99', image: '/the holy one.png' },
+        { name: 'The Almighty Tee', price: '£29.99', image: '/the almighty.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Luxe Tee', price: '£34.99', image: '/King of Kings crest.png' },
-        { name: 'Lion of Judah Heritage Tee', price: '£34.99', image: '/King of Kings 6.png' },
-        { name: 'Elyon Noir Tee', price: '£29.99', image: '/alyon 2.png' }
+        { name: 'King of Kings Crest Tee', price: '£34.99', image: '/King of Kings crest.png' },
+        { name: 'Lion of Judah Tee', price: '£34.99', image: '/King of Kings 6.png' },
+        { name: 'Prince of Peace Tee', price: '£29.99', image: '/the prince of peace.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Mono Tee', price: '£29.99', image: '/the first and the last.png' },
-        { name: 'The First and The Last Noir Tee', price: '£29.99', image: '/the first and the last.png' }
+        { name: 'First and The Last Tee', price: '£29.99', image: '/the first and the last.png' },
+        { name: 'Jesus Is King Tee', price: '£29.99', image: '/jesus is king.png' },
+        { name: 'Saved By Grace Tee', price: '£29.99', image: '/saved by grace.png' }
       ]
     }
   ];
@@ -55,17 +56,22 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {collection.products.map((product, i) => (
               <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-100">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="w-full h-96 object-cover"
-                />
+                <div className="bg-gray-100 h-96 flex items-center justify-center p-8">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="max-h-full max-w-full object-contain"
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/400x500?text=Design+Coming+Soon';
+                    }}
+                  />
+                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <p className="text-neutral-500 mt-1">Premium oversized fit</p>
+                  <p className="text-neutral-500 mt-1">Premium quality tee • Oversized fit</p>
                   <div className="flex items-center justify-between mt-4">
                     <span className="text-lg font-semibold">{product.price}</span>
-                    <button onClick={checkout} className="px-5 py-3 rounded-xl bg-black text-white">
+                    <button onClick={checkout} className="px-5 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition">
                       Buy Now
                     </button>
                   </div>
@@ -80,7 +86,7 @@ function App() {
         <div className="rounded-3xl bg-black text-white p-12 text-center">
           <h2 className="text-4xl font-semibold mb-4">Create Your Own Design</h2>
           <p className="text-neutral-300 mb-8">Personal scripture, declarations, and faith-led typography</p>
-          <button onClick={checkout} className="px-8 py-4 rounded-2xl bg-white text-black text-lg">
+          <button onClick={checkout} className="px-8 py-4 rounded-2xl bg-white text-black text-lg hover:bg-gray-100 transition">
             Start Custom Design
           </button>
         </div>
