@@ -1,4 +1,4 @@
-export default function KingOfKingsHomepage() {
+export default function Home() {
   const collections = [
     {
       title: 'Signature Collection',
@@ -60,8 +60,8 @@ export default function KingOfKingsHomepage() {
                   alt={product.name} 
                   className="w-full h-96 object-cover"
                   onError={(e) => {
-                    console.error('Failed to load image:', product.image);
-                    e.target.src = 'https://via.placeholder.com/400x500?text=Image+Not+Found';
+                    console.error('Failed to load:', product.image);
+                    e.target.style.display = 'none';
                   }}
                 />
                 <div className="p-6">
