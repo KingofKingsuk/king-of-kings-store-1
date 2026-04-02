@@ -8,45 +8,45 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el elyon 1 mockup white.png' },
-        { name: 'The Holy One Tee', price: '£34.99', image: '/the holy one mockup Gold white.png' },
-        { name: 'The Almighty Tee', price: '£29.99', image: '/the almighty white mockup.png' }
+        { name: 'EL YON Monogram Tee', price: '£9.99', image: '/el elyon 1 mockup white.png' },
+        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup Gold white.png' },
+        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white mockup.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£34.99', image: '/King of Kings black silky mockup.png' },
-        { name: 'King of Kings Black Tee', price: '£34.99', image: '/king of kings black mockup.png' },
-        { name: 'The Prince of Peace Tee', price: '£29.99', image: '/the prince of peace mockup.png' }
+        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
+        { name: 'King of Kings Black Tee', price: '£9.99', image: '/king of kings black mockup.png' },
+        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
       ]
     },
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
       products: [
-        { name: 'Jesus Died For Me Tee', price: '£34.99', image: '/jesus died for me mockup.png' },
-        { name: 'Jesus Christ Tee', price: '£34.99', image: '/jesus christ mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£34.99', image: '/jesus the way the truth and the life mock up.png' }
+        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me mockup.png' },
+        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ mockup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/jesus the way the truth and the life mock up.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Tee', price: '£29.99', image: '/the first and the last mockup black.png' },
-        { name: 'The Living God Tee', price: '£29.99', image: '/the living god mockup white.png' },
-        { name: 'Light of The World Tee', price: '£29.99', image: '/Light of the world mockup.png' }
+        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' },
+        { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup white.png' },
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' }
       ]
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { name: 'Christian Identity Tee', price: '£29.99', image: '/christian identity mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£24.99', image: '/time Is Running Out mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh saboath mockup.png' }
+        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
+        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time Is Running Out mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh saboath mockup.png' }
       ]
     }
   ];
