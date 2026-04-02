@@ -1,69 +1,110 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageStatus, setImageStatus] = useState({});
+
+  // List of ALL your mockups based on what you showed earlier
+  const allMockups = [
+    { name: 'Christian Identity Tee', price: '£9.99', file: 'christian identity mockup.png' },
+    { name: 'EL YON Monogram Tee', price: '£9.99', file: 'el elyon 1 mockup white.png' },
+    { name: 'EL YON Creme Tee', price: '£9.99', file: 'el elyon 2 mockup creme.png' },
+    { name: 'Faith Over Fear Tee', price: '£9.99', file: 'fath over fear mockup.png' },
+    { name: 'God Got Me Tee', price: '£9.99', file: 'god got me mockup.png' },
+    { name: 'Jesus Christ Tee', price: '£9.99', file: 'jesus christ mockup.png' },
+    { name: 'Jesus Died For Me Tee', price: '£9.99', file: 'jesus died for me mockup.png' },
+    { name: 'Jesus The Way Tee', price: '£9.99', file: 'jesus the way mockup.png' },
+    { name: 'The Way The Truth The Life Tee', price: '£9.99', file: 'jesus the way the truth and the life mock up.png' },
+    { name: 'King of Kings Black Tee', price: '£9.99', file: 'king of kings black mockup.png' },
+    { name: 'King of Kings Crest Tee', price: '£9.99', file: 'King of Kings black silky mockup.png' },
+    { name: 'King of Kings Gold Tee', price: '£9.99', file: 'King of Kings mockup.png' },
+    { name: 'Light of The World Tee', price: '£9.99', file: 'Light of the world mockup.png' },
+    { name: 'My Identity Tee', price: '£9.99', file: 'my identity mockup.png' },
+    { name: 'No Weapon Formed Tee', price: '£9.99', file: 'no weapon formed mockup.png' },
+    { name: 'Redeemed Hoodie', price: '£9.99', file: 'redeemed hoodie mockup.png' },
+    { name: 'The Almighty Tee', price: '£9.99', file: 'the almighty white mockup.png' },
+    { name: 'The First and The Last Tee', price: '£9.99', file: 'the first and the last mockup black.png' },
+    { name: 'The Holy One Tee', price: '£9.99', file: 'the holy one mockup Gold white.png' },
+    { name: 'The Living God Tee', price: '£9.99', file: 'the living god mockup white.png' },
+    { name: 'The Prince of Peace Tee', price: '£9.99', file: 'the prince of peace mockup.png' },
+    { name: 'The Way Tee', price: '£9.99', file: 'The way mockup.png' },
+    { name: 'The Way The Truth The Life Tee 2', price: '£9.99', file: 'the way the truth and the life mockup.png' },
+    { name: 'Time Is Running Tee', price: '£9.99', file: 'Time is running mockup.png' },
+    { name: 'Time Is Running Out Tee', price: '£9.99', file: 'time Is Running Out mockup.png' },
+    { name: 'Yahweh Saboath Tee', price: '£9.99', file: 'yahweh sabotah mockup.png' }
+  ];
+
+  // Check each image on load
+  useEffect(() => {
+    allMockups.forEach(mockup => {
+      const img = new Image();
+      img.onload = () => setImageStatus(prev => ({ ...prev, [mockup.name]: 'loaded' }));
+      img.onerror = () => setImageStatus(prev => ({ ...prev, [mockup.name]: 'failed' }));
+      img.src = `/${mockup.file}`;
+    });
+  }, []);
 
   const collections = [
     {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
-      products: [
-        { name: 'EL YON Monogram Tee', price: '£9.99', image: '/el elyon 1 mockup white.png' },
-        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el elyon 2 mockup creme.png' },
-        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white mockup.png' }
-      ]
+      products: allMockups.filter(m => 
+        m.name === 'EL YON Monogram Tee' || 
+        m.name === 'EL YON Creme Tee' || 
+        m.name === 'The Almighty Tee'
+      )
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
-      products: [
-        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
-        { name: 'King of Kings Black Tee', price: '£9.99', image: '/king of kings black mockup.png' },
-        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
-        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
-      ]
+      products: allMockups.filter(m => 
+        m.name === 'King of Kings Crest Tee' || 
+        m.name === 'King of Kings Black Tee' || 
+        m.name === 'King of Kings Gold Tee' || 
+        m.name === 'The Prince of Peace Tee'
+      )
     },
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
-      products: [
-        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me mockup.png' },
-        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ mockup.png' },
-        { name: 'Jesus The Way Tee', price: '£9.99', image: '/jesus the way mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/jesus the way the truth and the life mock up.png' }
-      ]
+      products: allMockups.filter(m => 
+        m.name === 'Jesus Died For Me Tee' || 
+        m.name === 'Jesus Christ Tee' || 
+        m.name === 'Jesus The Way Tee' || 
+        m.name === 'The Way The Truth The Life Tee'
+      )
     },
     {
       title: 'Faith Collection',
       subtitle: 'Bold declarations of faith',
-      products: [
-        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear mockup.png' },
-        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me mockup.png' },
-        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotah mockup.png' }
-      ]
+      products: allMockups.filter(m => 
+        m.name === 'Faith Over Fear Tee' || 
+        m.name === 'God Got Me Tee' || 
+        m.name === 'No Weapon Formed Tee' || 
+        m.name === 'Yahweh Saboath Tee'
+      )
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
-      products: [
-        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' },
-        { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup white.png' },
-        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
-        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' }
-      ]
+      products: allMockups.filter(m => 
+        m.name === 'The First and The Last Tee' || 
+        m.name === 'The Living God Tee' || 
+        m.name === 'Light of The World Tee' || 
+        m.name === 'The Way Tee' || 
+        m.name === 'The Way The Truth The Life Tee 2'
+      )
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
-      products: [
-        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
-        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time Is Running Out mockup.png' },
-        { name: 'Time Is Running Tee', price: '£9.99', image: '/Time is running mockup.png' },
-        { name: 'Redeemed Hoodie', price: '£9.99', image: '/redeemed hoodie mockup.png' }
-      ]
+      products: allMockups.filter(m => 
+        m.name === 'Christian Identity Tee' || 
+        m.name === 'My Identity Tee' || 
+        m.name === 'Time Is Running Out Tee' || 
+        m.name === 'Time Is Running Tee' || 
+        m.name === 'Redeemed Hoodie'
+      )
     }
   ];
 
@@ -74,15 +115,34 @@ function App() {
   const imageSize = '240px';
   const popupSize = '576px';
 
+  // Count how many images loaded
+  const loadedCount = Object.values(imageStatus).filter(s => s === 'loaded').length;
+  const totalCount = allMockups.length;
+
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Hero Section */}
       <div style={{ padding: '80px 20px', textAlign: 'center', backgroundColor: 'white' }}>
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
-        <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px', margin: '0 0 24px 0' }}>King of Kings</h1>
+        <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
         <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>
           Premium faith-led apparel crafted to make belief visible.
         </p>
+        
+        {/* Diagnostic Banner - Shows how many images loaded */}
+        <div style={{ 
+          backgroundColor: loadedCount === totalCount ? '#10b981' : '#ef4444', 
+          color: 'white', 
+          padding: '10px', 
+          borderRadius: '8px',
+          maxWidth: '400px',
+          margin: '0 auto 20px',
+          fontSize: '14px'
+        }}>
+          Images loaded: {loadedCount} / {totalCount}
+          {loadedCount !== totalCount && ' - Some images are missing!'}
+        </div>
+        
         <button 
           onClick={checkout}
           style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer' }}
@@ -126,10 +186,10 @@ function App() {
                     justifyContent: 'center',
                     cursor: 'pointer'
                   }}
-                  onClick={() => setSelectedImage(product.image)}
+                  onClick={() => setSelectedImage(`/${product.file}`)}
                 >
                   <img 
-                    src={product.image} 
+                    src={`/${product.file}`}
                     alt={product.name} 
                     style={{ 
                       width: imageSize,
@@ -142,8 +202,8 @@ function App() {
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Image+Not+Found';
-                      console.error('Failed to load:', product.image);
+                      e.target.src = `https://placehold.co/240x300/ff6b6b/white?text=MISSING:${product.file.substring(0,20)}`;
+                      console.error('Failed to load:', product.file);
                     }}
                   />
                 </div>
