@@ -9,7 +9,7 @@ function App() {
       subtitle: 'Luxury typography pieces',
       products: [
         { name: 'EL YON Monogram Tee', price: '£9.99', image: '/el elyon 1 mockup white.png' },
-        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup Gold white.png' },
+        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el elyon 2 mockup creme.png' },
         { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white mockup.png' }
       ]
     },
@@ -19,6 +19,7 @@ function App() {
       products: [
         { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
         { name: 'King of Kings Black Tee', price: '£9.99', image: '/king of kings black mockup.png' },
+        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
         { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
       ]
     },
@@ -28,7 +29,18 @@ function App() {
       products: [
         { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me mockup.png' },
         { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ mockup.png' },
+        { name: 'Jesus The Way Tee', price: '£9.99', image: '/jesus the way mockup.png' },
         { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/jesus the way the truth and the life mock up.png' }
+      ]
+    },
+    {
+      title: 'Faith Collection',
+      subtitle: 'Bold declarations of faith',
+      products: [
+        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear mockup.png' },
+        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me mockup.png' },
+        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotah mockup.png' }
       ]
     },
     {
@@ -37,7 +49,9 @@ function App() {
       products: [
         { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' },
         { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup white.png' },
-        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' }
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
+        { name: 'The Way Mockup Tee', price: '£9.99', image: '/The way mockup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' }
       ]
     },
     {
@@ -45,8 +59,10 @@ function App() {
       subtitle: 'Who you are in Christ',
       products: [
         { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
+        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
         { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time Is Running Out mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh saboath mockup.png' }
+        { name: 'Time Is Running Tee', price: '£9.99', image: '/Time is running mockup.png' },
+        { name: 'Redeemed Hoodie', price: '£9.99', image: '/redeemed hoodie mockup.png' }
       ]
     }
   ];
@@ -85,7 +101,7 @@ function App() {
 
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '30px',
             alignItems: 'stretch'
           }}>
