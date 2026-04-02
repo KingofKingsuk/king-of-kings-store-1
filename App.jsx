@@ -50,7 +50,7 @@ function App() {
         { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' },
         { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup white.png' },
         { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
-        { name: 'The Way Mockup Tee', price: '£9.99', image: '/The way mockup.png' },
+        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
         { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' }
       ]
     },
@@ -142,15 +142,14 @@ function App() {
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Coming+Soon';
+                      e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Image+Not+Found';
                       console.error('Failed to load:', product.image);
                     }}
                   />
                 </div>
                 
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 8px 0', textAlign: 'center' }}>{product.name}</h3>
-                  <p style={{ color: '#999', fontSize: '13px', margin: '0 0 20px 0', textAlign: 'center' }}>Premium quality • Oversized fit</p>
+                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 20px 0', textAlign: 'center' }}>{product.name}</h3>
                   <div style={{ 
                     display: 'flex', 
                     justifyContent: 'space-between', 
