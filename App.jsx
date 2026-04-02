@@ -1,100 +1,233 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imageStatus, setImageStatus] = useState({});
 
-  // FIRST - Let's test ALL possible image files from your GitHub
-  const testImages = [
-    'King of Kings black mockup.png.png',
-    'King of Kings black silky mockup.png',
-    'King of Kings mockup.png',
-    'Light of the world mockup.png',
-    'The way mockup.png',
-    'Time is running mockup.png',
-    'Time is running mockup.png.png',
-    'christain identity mockup.png',
-    'al alyan 1 mockup white.png',
-    'al alyan 2 mockup cream.png',
-    'fatih over fear mockup.png',
-    'god got me mockup.png',
-    'Jesus christ mockup.png',
-    'Jesus died for me mockup.png',
-    'Jesus the way mockup.png',
-    'Jesus the way the truth and the life mock up.png',
-    'my identity mockup.png',
-    'no weapon formed mockup.png',
-    'redamned hoodie mockup.png',
-    'the almighty white mockup.png',
-    'the first and the last mockup black.png',
-    'the holy one mockup Gold yellow.png',
-    'the fixing god mockup white.png',
-    'the prince of peace mockup.png',
-    'the way the truth and the life mockup.png',
-    'time is burning Out mockup.png.png',
-    'yahweh sabbath mockup.png.png'
+  // ONLY THE IMAGES THAT WORK (✅ LOADS)
+  const collections = [
+    {
+      title: 'Signature Collection',
+      subtitle: 'Luxury typography pieces',
+      products: [
+        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white mockup.png' }
+      ]
+    },
+    {
+      title: 'Royal Collection',
+      subtitle: 'Crest and kingdom inspired premium wear',
+      products: [
+        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
+        { name: 'King of Kings Black Tee', price: '£9.99', image: '/King of Kings black mockup.png.png' },
+        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
+        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
+      ]
+    },
+    {
+      title: 'Faith Collection',
+      subtitle: 'Bold declarations of faith',
+      products: [
+        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me mockup.png' },
+        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' }
+      ]
+    },
+    {
+      title: 'Scripture Collection',
+      subtitle: 'Wear the Word boldly',
+      products: [
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
+        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' },
+        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' }
+      ]
+    },
+    {
+      title: 'Identity Collection',
+      subtitle: 'Who you are in Christ',
+      products: [
+        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
+        { name: 'Time Is Running Tee', price: '£9.99', image: '/Time is running mockup.png' }
+      ]
+    }
   ];
-
-  // Test each image on load
-  useEffect(() => {
-    testImages.forEach(filename => {
-      const img = new Image();
-      img.onload = () => setImageStatus(prev => ({ ...prev, [filename]: '✅ LOADS' }));
-      img.onerror = () => setImageStatus(prev => ({ ...prev, [filename]: '❌ MISSING' }));
-      img.src = `/${filename}`;
-    });
-  }, []);
 
   const checkout = () => {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
   };
 
-  // Count working images
-  const workingImages = Object.values(imageStatus).filter(s => s === '✅ LOADS').length;
-  const totalImages = testImages.length;
+  const imageSize = '240px';
+  const popupSize = '576px';
 
   return (
-    <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif', padding: '20px' }}>
-      <h1 style={{ fontSize: '48px', textAlign: 'center' }}>King of Kings</h1>
-      
-      {/* Diagnostic Banner */}
-      <div style={{ 
-        backgroundColor: workingImages === totalImages ? '#10b981' : '#ef4444', 
-        color: 'white', 
-        padding: '20px', 
-        borderRadius: '12px',
-        maxWidth: '800px',
-        margin: '20px auto',
-        textAlign: 'center'
-      }}>
-        <h2>Images Working: {workingImages} / {totalImages}</h2>
-        {workingImages !== totalImages && <p>Scroll down to see which files are missing!</p>}
-      </div>
-
-      {/* List all images and their status */}
-      <div style={{ maxWidth: '800px', margin: '40px auto', backgroundColor: '#f5f5f5', padding: '20px', borderRadius: '12px' }}>
-        <h3 style={{ marginBottom: '20px' }}>Image Status Check:</h3>
-        {testImages.map((filename, idx) => (
-          <div key={idx} style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '10px', 
-            padding: '8px',
-            borderBottom: '1px solid #ddd',
-            backgroundColor: imageStatus[filename] === '✅ LOADS' ? '#d1fae5' : '#fee2e2'
-          }}>
-            <span style={{ fontSize: '20px' }}>{imageStatus[filename] === '✅ LOADS' ? '✅' : '❌'}</span>
-            <span style={{ fontFamily: 'monospace', fontSize: '12px', flex: 1 }}>{filename}</span>
-            <span style={{ fontSize: '12px', color: imageStatus[filename] === '✅ LOADS' ? 'green' : 'red' }}>{imageStatus[filename]}</span>
-          </div>
-        ))}
-      </div>
-
-      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+    <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      {/* Hero Section */}
+      <div style={{ padding: '80px 20px', textAlign: 'center', backgroundColor: 'white' }}>
+        <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
+        <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
+        <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>
+          Premium faith-led apparel crafted to make belief visible.
+        </p>
         <button onClick={checkout} style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer' }}>
           Shop Best Sellers
         </button>
       </div>
+
+      {/* Product Collections */}
+      {collections.map((collection, idx) => (
+        <div key={idx} style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <h2 style={{ fontSize: '36px', fontWeight: 'bold', margin: '0 0 8px 0' }}>{collection.title}</h2>
+            <p style={{ color: '#666', margin: '0' }}>{collection.subtitle}</p>
+          </div>
+
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '30px',
+            alignItems: 'stretch'
+          }}>
+            {collection.products.map((product, i) => (
+              <div key={i} style={{ 
+                backgroundColor: 'white', 
+                borderRadius: '16px', 
+                overflow: 'hidden',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+                border: '1px solid #eee',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+                <div 
+                  style={{ 
+                    padding: '30px 20px', 
+                    textAlign: 'center', 
+                    backgroundColor: '#fafafa',
+                    minHeight: '280px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
+                  onClick={() => setSelectedImage(product.image)}
+                >
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    style={{ 
+                      width: imageSize,
+                      height: 'auto', 
+                      display: 'block',
+                      objectFit: 'contain',
+                      transition: 'transform 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                </div>
+                
+                <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 20px 0', textAlign: 'center' }}>{product.name}</h3>
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center', 
+                    marginTop: 'auto',
+                    gap: '10px'
+                  }}>
+                    <span style={{ fontSize: '22px', fontWeight: 'bold', color: '#000' }}>{product.price}</span>
+                    <button 
+                      onClick={checkout}
+                      style={{ 
+                        backgroundColor: 'black', 
+                        color: 'white', 
+                        padding: '10px 20px', 
+                        borderRadius: '30px', 
+                        border: 'none', 
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: '500'
+                      }}
+                    >
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {/* Custom Design Section */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
+        <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px' }}>
+          <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
+          <p style={{ color: '#ccc', margin: '0 0 24px 0' }}>Personal scripture, declarations, and faith-led typography</p>
+          <button 
+            onClick={checkout}
+            style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500' }}
+          >
+            Start Custom Design
+          </button>
+        </div>
+      </div>
+
+      {/* Lightbox Popup */}
+      {selectedImage && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            cursor: 'pointer'
+          }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              padding: '24px',
+              borderRadius: '16px',
+              maxWidth: popupSize,
+              width: '90%',
+              textAlign: 'center'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Product preview"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: popupSize,
+                display: 'block',
+                margin: '0 auto'
+              }}
+            />
+            <button
+              onClick={() => setSelectedImage(null)}
+              style={{
+                marginTop: '20px',
+                padding: '10px 28px',
+                backgroundColor: 'black',
+                color: 'white',
+                border: 'none',
+                borderRadius: '30px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
