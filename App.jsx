@@ -8,45 +8,61 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'EL YON Monogram Tee', price: '£29.99', image: '/el%20elyon%201%20mockup%20white.png' },
-        { name: 'The Holy One Tee', price: '£34.99', image: '/the%20holy%20one%20mockup%20Gold%20white.png' },
-        { name: 'The Almighty Tee', price: '£29.99', image: '/the%20almighty%20white%20mockup.png' }
+        { name: 'EL YON Monogram Tee', price: '£9.99', image: '/el elyon 1 mockup white.png' },
+        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el elyon 2 mockup creme.png' },
+        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white mockup.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£34.99', image: '/King%20of%20Kings%20black%20silky%20mockup.png' },
-        { name: 'King of Kings Black Tee', price: '£34.99', image: '/king%20of%20kings%20black%20mockup.png' },
-        { name: 'The Prince of Peace Tee', price: '£29.99', image: '/the%20prince%20of%20peace%20mockup.png' }
+        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
+        { name: 'King of Kings Black Tee', price: '£9.99', image: '/king of kings black mockup.png' },
+        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
+        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
       ]
     },
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
       products: [
-        { name: 'Jesus Died For Me Tee', price: '£34.99', image: '/jesus%20died%20for%20me%20mockup.png' },
-        { name: 'Jesus Christ Tee', price: '£34.99', image: '/jesus%20christ%20mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£34.99', image: '/jesus%20the%20way%20the%20truth%20and%20the%20life%20mock%20up.png' }
+        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me mockup.png' },
+        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ mockup.png' },
+        { name: 'Jesus The Way Tee', price: '£9.99', image: '/jesus the way mockup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/jesus the way the truth and the life mock up.png' }
+      ]
+    },
+    {
+      title: 'Faith Collection',
+      subtitle: 'Bold declarations of faith',
+      products: [
+        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fear over fear mockup.png' },
+        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me mockup.png' },
+        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahwey saboath mockup.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Tee', price: '£29.99', image: '/the%20first%20and%20the%20last%20mockup%20black.png' },
-        { name: 'The Living God Tee', price: '£29.99', image: '/the%20living%20god%20mockup%20white.png' },
-        { name: 'Light of The World Tee', price: '£29.99', image: '/Light%20of%20the%20world%20mockup.png' }
+        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' },
+        { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup white.png' },
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
+        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
+        { name: 'The Way The Truth The Life Tee 2', price: '£9.99', image: '/the way the truth and the life mockup.png' }
       ]
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { name: 'Christian Identity Tee', price: '£29.99', image: '/christian%20identity%20mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£24.99', image: '/time%20Is%20Running%20Out%20mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£29.99', image: '/yahweh%20saboath%20mockup.png' }
+        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
+        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
+        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time running out mockup.png' },
+        { name: 'Time Is Running Tee', price: '£9.99', image: '/time is running mockup.png' },
+        { name: 'Redeemed Hoodie', price: '£9.99', image: '/redeemed hoodie mockup.png' }
       ]
     }
   ];
@@ -55,17 +71,15 @@ function App() {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
   };
 
-  // 2.5 inches = 240px (assuming 96px per inch)
   const imageSize = '240px';
-  // Popup size 4.5 inches = 432px
-  const popupSize = '432px';
+  const popupSize = '576px';
 
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Hero Section */}
       <div style={{ padding: '80px 20px', textAlign: 'center', backgroundColor: 'white' }}>
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
-        <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px', margin: '0 0 24px 0' }}>King of Kings</h1>
+        <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
         <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>
           Premium faith-led apparel crafted to make belief visible.
         </p>
@@ -85,10 +99,9 @@ function App() {
             <p style={{ color: '#666', margin: '0' }}>{collection.subtitle}</p>
           </div>
 
-          {/* GRID LAYOUT */}
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '30px',
             alignItems: 'stretch'
           }}>
@@ -102,7 +115,6 @@ function App() {
                 display: 'flex',
                 flexDirection: 'column'
               }}>
-                {/* Image Container - Clickable */}
                 <div 
                   style={{ 
                     padding: '30px 20px', 
@@ -130,15 +142,14 @@ function App() {
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Coming+Soon';
+                      e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Image+Not+Found';
+                      console.error('Failed to load:', product.image);
                     }}
                   />
                 </div>
                 
-                {/* Product Info */}
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 8px 0', textAlign: 'center' }}>{product.name}</h3>
-                  <p style={{ color: '#999', fontSize: '13px', margin: '0 0 20px 0', textAlign: 'center' }}>Premium quality • Oversized fit</p>
+                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 20px 0', textAlign: 'center' }}>{product.name}</h3>
                   <div style={{ 
                     display: 'flex', 
                     justifyContent: 'space-between', 
@@ -205,8 +216,8 @@ function App() {
           <div
             style={{
               backgroundColor: 'white',
-              padding: '20px',
-              borderRadius: '12px',
+              padding: '24px',
+              borderRadius: '16px',
               maxWidth: popupSize,
               width: '90%',
               textAlign: 'center'
@@ -228,7 +239,7 @@ function App() {
               onClick={() => setSelectedImage(null)}
               style={{
                 marginTop: '20px',
-                padding: '8px 24px',
+                padding: '10px 28px',
                 backgroundColor: 'black',
                 color: 'white',
                 border: 'none',
