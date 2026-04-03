@@ -24,8 +24,20 @@ function App() {
     jesusCollectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // ALL PRODUCT COLLECTIONS with EXACT filenames from your public folder
+  // ALL PRODUCT COLLECTIONS - REORDERED
   const collections = [
+    {
+      title: 'Identity Collection',
+      subtitle: 'Who you are in Christ',
+      products: [
+        { name: 'Christian Identity Front Black Tee', price: '£9.99', image: '/christian identity front black mockup.png' },
+        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
+        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
+        { name: 'Redeemed Front Tee', price: '£9.99', image: '/redeemed front mockup.png' },
+        { name: 'The Almighty White Tee', price: '£9.99', image: '/the almighty white mockup.png' },
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' }
+      ]
+    },
     {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
@@ -74,18 +86,6 @@ function App() {
         { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup.png' },
         { name: 'The Way Tee', price: '£9.99', image: '/the way mockup.png' },
         { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' }
-      ]
-    },
-    {
-      title: 'Identity Collection',
-      subtitle: 'Who you are in Christ',
-      products: [
-        { name: 'Christian Identity Front Black Tee', price: '£9.99', image: '/christian identity front black mockup.png' },
-        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
-        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
-        { name: 'Redeemed Front Tee', price: '£9.99', image: '/redeemed front mockup.png' },
-        { name: 'The Almighty White Tee', price: '£9.99', image: '/the almighty white mockup.png' },
-        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' }
       ]
     }
   ];
@@ -319,7 +319,7 @@ function App() {
         </div>
       </div>
 
-      {/* PRODUCT COLLECTIONS */}
+      {/* PRODUCT COLLECTIONS - REORDERED */}
       {collections.map((collection, idx) => (
         <div 
           key={idx} 
@@ -368,7 +368,7 @@ function App() {
         </div>
       </div>
 
-      {/* LIGHTBOX POPUP - 5 INCHES (480px) */}
+      {/* LIGHTBOX POPUP */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
