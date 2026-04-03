@@ -6,6 +6,8 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showLogoGallery, setShowLogoGallery] = useState(false);
   const [selectedLogo, setSelectedLogo] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
 
   // Product options for custom design
   const productOptions = [
@@ -79,8 +81,31 @@ function App() {
     }
   ];
 
-  const checkout = () => {
+  // Add to cart function
+  const addToCart = (item) => {
+    setCart([...cart, { ...item, id: Date.now() }]);
+    alert(`${item.name} added to cart!`);
+  };
+
+  // Remove from cart function
+  const removeFromCart = (id) => {
+    setCart(cart.filter(item => item.id !== id));
+  };
+
+  // Get cart total
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => {
+      const price = parseFloat(item.price.replace('£', ''));
+      return total + price;
+    }, 0).toFixed(2);
+  };
+
+  // Proceed to Stripe checkout
+  const proceedToCheckout = () => {
+    // You can pass cart items to Stripe here
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
+    setCart([]);
+    setShowCart(false);
   };
 
   const handleCustomDesign = () => {
@@ -99,8 +124,16 @@ function App() {
 
   const handleLogoSelect = (logo) => {
     setSelectedLogo(logo);
-    alert(`Added to cart: ${selectedProduct.name} with ${logo.name} design!\n\nTotal: ${selectedProduct.price}\n\nProceed to checkout?`);
-    checkout();
+    const customItem = {
+      name: `${selectedProduct.name} with ${logo.name} Design`,
+      price: selectedProduct.price,
+      image: logo.image,
+      type: 'custom'
+    };
+    addToCart(customItem);
+    setShowLogoGallery(false);
+    setSelectedProduct(null);
+    setSelectedLogo(null);
   };
 
   const handleBackToProducts = () => {
@@ -131,7 +164,7 @@ function App() {
                 <div key={idx} onClick={() => handleLogoSelect(product)} style={{ backgroundColor: 'white', border: '1px solid #eee', borderRadius: '16px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}>
                   <img src={product.image} alt={product.name} style={{ width: '180px', height: 'auto', marginBottom: '16px', borderRadius: '8px' }} onError={(e) => { e.target.src = 'https://placehold.co/180x200/e2e8f0/666?text=Coming+Soon'; }} />
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>{product.name}</h3>
-                  <button style={{ backgroundColor: 'black', color: 'white', padding: '8px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', marginTop: '16px' }}>Select This Design</button>
+                  <button style={{ backgroundColor: 'black', color: 'white', padding: '8px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', marginTop: '16px' }}>Add to Cart</button>
                 </div>
               ))}
             </div>
@@ -167,7 +200,7 @@ function App() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px', marginTop: '30px' }}>
               <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>1</div><p><strong>Choose Garment</strong></p><p style={{ fontSize: '14px', color: '#666' }}>Select T-Shirt, Sweatshirt, or Hoodie</p></div>
               <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>2</div><p><strong>Pick a Design</strong></p><p style={{ fontSize: '14px', color: '#666' }}>Choose from our faith-led logo collection</p></div>
-              <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>3</div><p><strong>Place Order</strong></p><p style={{ fontSize: '14px', color: '#666' }}>We'll print and ship your custom piece</p></div>
+              <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>3</div><p><strong>Add to Cart</strong></p><p style={{ fontSize: '14px', color: '#666' }}>Review items and proceed to checkout</p></div>
             </div>
           </div>
         </div>
@@ -178,12 +211,69 @@ function App() {
   // Main Shop Page
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      
+      {/* Shopping Cart Sidebar */}
+      {showCart && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          width: '400px',
+          height: '100vh',
+          backgroundColor: 'white',
+          boxShadow: '-2px 0 10px rgba(0,0,0,0.1)',
+          zIndex: 1001,
+          padding: '20px',
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: 'bold' }}>Your Cart ({cart.length})</h2>
+            <button onClick={() => setShowCart(false)} style={{ backgroundColor: 'transparent', border: 'none', fontSize: '24px', cursor: 'pointer' }}>✕</button>
+          </div>
+          
+          {cart.length === 0 ? (
+            <p style={{ color: '#666', textAlign: 'center', marginTop: '40px' }}>Your cart is empty</p>
+          ) : (
+            <>
+              {cart.map((item) => (
+                <div key={item.id} style={{ display: 'flex', gap: '15px', marginBottom: '20px', padding: '10px', borderBottom: '1px solid #eee' }}>
+                  <img src={item.image} alt={item.name} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }} />
+                  <div style={{ flex: 1 }}>
+                    <h4 style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>{item.name}</h4>
+                    <p style={{ color: '#b8860b', fontWeight: 'bold' }}>{item.price}</p>
+                  </div>
+                  <button onClick={() => removeFromCart(item.id)} style={{ backgroundColor: '#fee2e2', color: '#dc2626', border: 'none', borderRadius: '8px', padding: '5px 10px', cursor: 'pointer' }}>Remove</button>
+                </div>
+              ))}
+              
+              <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '2px solid #eee' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                  <strong>Total:</strong>
+                  <strong>£{getCartTotal()}</strong>
+                </div>
+                <button onClick={proceedToCheckout} style={{ backgroundColor: 'black', color: 'white', padding: '15px', borderRadius: '30px', border: 'none', cursor: 'pointer', width: '100%', fontSize: '16px', fontWeight: 'bold' }}>
+                  Proceed to Checkout
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Cart Icon */}
+      <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
+        <button onClick={() => setShowCart(true)} style={{ backgroundColor: 'black', color: 'white', padding: '12px 18px', borderRadius: '50px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          🛒 Cart {cart.length > 0 && <span style={{ backgroundColor: '#b8860b', borderRadius: '50%', padding: '2px 8px', fontSize: '12px' }}>{cart.length}</span>}
+        </button>
+      </div>
+
       {/* HERO SECTION */}
       <div style={{ padding: '80px 20px', textAlign: 'center', background: 'linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%)' }}>
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
         <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
         <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>Premium faith-led apparel crafted to make belief visible.</p>
-        <button onClick={checkout} style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>Shop Best Sellers</button>
       </div>
 
       {/* WHO WE ARE SECTION */}
@@ -230,7 +320,7 @@ function App() {
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 20px 0', textAlign: 'center' }}>{product.name}</h3>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', gap: '10px' }}>
                     <span style={{ fontSize: '22px', fontWeight: 'bold', color: '#000' }}>{product.price}</span>
-                    <button onClick={checkout} style={{ backgroundColor: 'black', color: 'white', padding: '10px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'black'}>Buy Now</button>
+                    <button onClick={() => addToCart(product)} style={{ backgroundColor: 'black', color: 'white', padding: '10px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'black'}>Add to Cart</button>
                   </div>
                 </div>
               </div>
