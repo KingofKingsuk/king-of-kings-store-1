@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -8,6 +8,9 @@ function App() {
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  
+  // Create ref for Jesus Collection section
+  const jesusCollectionRef = useRef(null);
 
   // Product options for custom design
   const productOptions = [
@@ -15,6 +18,11 @@ function App() {
     { id: 2, name: 'Sweatshirt', price: '£19.99', icon: '👚', description: 'Oversized fit • Fleece lined • Comfortable' },
     { id: 3, name: 'Hoodie', price: '£29.99', icon: '🧥', description: 'Premium hoodie • Kangaroo pocket • Adjustable hood' }
   ];
+
+  // Scroll to Jesus Collection
+  const scrollToJesusCollection = () => {
+    jesusCollectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // ALL PRODUCT COLLECTIONS with EXACT filenames from your public folder
   const collections = [
@@ -40,6 +48,7 @@ function App() {
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
+      ref: jesusCollectionRef,
       products: [
         { name: 'Jesus Christ White Tee', price: '£9.99', image: '/jesus christ white mockup.png' },
         { name: 'Jesus Cross Tee', price: '£9.99', image: '/jesus cross mockup.png' },
@@ -102,7 +111,6 @@ function App() {
 
   // Proceed to Stripe checkout
   const proceedToCheckout = () => {
-    // You can pass cart items to Stripe here
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
     setCart([]);
     setShowCart(false);
@@ -142,7 +150,7 @@ function App() {
   };
 
   const imageSize = '240px';
-  const popupSize = '576px';
+  const popupSize = '480px'; // 5 inches (480px)
 
   // Custom Design Page
   if (showCustomPage) {
@@ -274,6 +282,14 @@ function App() {
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
         <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
         <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>Premium faith-led apparel crafted to make belief visible.</p>
+        <button 
+          onClick={scrollToJesusCollection}
+          style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }} 
+          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} 
+          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        >
+          Shop Best Sellers
+        </button>
       </div>
 
       {/* WHO WE ARE SECTION */}
@@ -305,7 +321,11 @@ function App() {
 
       {/* PRODUCT COLLECTIONS */}
       {collections.map((collection, idx) => (
-        <div key={idx} style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
+        <div 
+          key={idx} 
+          ref={collection.ref || null}
+          style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}
+        >
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2 style={{ fontSize: '36px', fontWeight: 'bold', margin: '0 0 8px 0' }}>{collection.title}</h2>
             <p style={{ color: '#666', margin: '0' }}>{collection.subtitle}</p>
@@ -348,7 +368,7 @@ function App() {
         </div>
       </div>
 
-      {/* LIGHTBOX POPUP */}
+      {/* LIGHTBOX POPUP - 5 INCHES (480px) */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
