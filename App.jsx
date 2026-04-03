@@ -150,7 +150,7 @@ function App() {
   };
 
   const imageSize = '240px';
-  const popupSize = '480px'; // 5 inches (480px)
+  const popupSize = '576px'; // 6 inches (576px)
 
   // Custom Design Page
   if (showCustomPage) {
@@ -319,7 +319,7 @@ function App() {
         </div>
       </div>
 
-      {/* PRODUCT COLLECTIONS - REORDERED */}
+      {/* PRODUCT COLLECTIONS */}
       {collections.map((collection, idx) => (
         <div 
           key={idx} 
@@ -368,7 +368,7 @@ function App() {
         </div>
       </div>
 
-      {/* LIGHTBOX POPUP */}
+      {/* LIGHTBOX POPUP - 6 INCHES (576px) */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
