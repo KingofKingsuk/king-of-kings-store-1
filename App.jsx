@@ -22,7 +22,6 @@ function App() {
       products: [
         { name: 'EL Elyon 1 Tee', price: '£9.99', image: '/el elyon 1 mockup.png' },
         { name: 'EL Elyon 2 Tee', price: '£9.99', image: '/el elyon 2 mockup.png' },
-        { name: 'EL Elyon 2 Creme Tee', price: '£9.99', image: '/el elyon 2 creme mockup.png' },
         { name: 'EL Elyon White Tee', price: '£9.99', image: '/el elyon white mockup.png' }
       ]
     },
@@ -52,8 +51,7 @@ function App() {
       products: [
         { name: 'Faith Over Fear Tee', price: '£9.99', image: '/faith over fear mockup.png' },
         { name: 'God Got Me Back Tee', price: '£9.99', image: '/god got me back mockup.png' },
-        { name: 'No Weapon Tee', price: '£9.99', image: '/no weapon mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotage mockup.png' }
+        { name: 'No Weapon Tee', price: '£9.99', image: '/no weapon mockup.png' }
       ]
     },
     {
@@ -61,7 +59,6 @@ function App() {
       subtitle: 'Wear the Word boldly',
       products: [
         { name: 'The First and The Last Black Tee', price: '£9.99', image: '/the first and the last black mockup.png' },
-        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup.png' },
         { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup.png' },
         { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup.png' },
         { name: 'The Way Tee', price: '£9.99', image: '/the way mockup.png' },
@@ -77,9 +74,7 @@ function App() {
         { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
         { name: 'Redeemed Front Tee', price: '£9.99', image: '/redeemed front mockup.png' },
         { name: 'The Almighty White Tee', price: '£9.99', image: '/the almighty white mockup.png' },
-        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time is Running Out mockup.png' },
-        { name: 'Times Running Out Tee', price: '£9.99', image: '/times Running Out mockup.png' }
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' }
       ]
     }
   ];
