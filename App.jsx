@@ -1,4 +1,4 @@
- import { useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,63 +14,73 @@ function App() {
     { id: 3, name: 'Hoodie', price: '£29.99', icon: '🧥', description: 'Premium hoodie • Kangaroo pocket • Adjustable hood' }
   ];
 
-  // ALL PRODUCT COLLECTIONS with EXACT filenames from your GitHub
+  // ALL PRODUCT COLLECTIONS with EXACT filenames from your public folder
   const collections = [
     {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'EL YON White Tee', price: '£9.99', image: '/el elyon 1 mockup white.png' },
-        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el elyon 2 mockup creme.png' },
-        { name: 'EL YON Tee', price: '£9.99', image: '/el elyon 1 mockup.png' }
+        { name: 'EL Aleyon White Tee', price: '£9.99', image: '/el aleyon white modcup.png' },
+        { name: 'EL Aleyon Creme Tee', price: '£9.99', image: '/el aleyon 2 creme modcup.png' },
+        { name: 'EL Aleyon Tee', price: '£9.99', image: '/el aleyon 1 modcup.png' },
+        { name: 'EL Aleyon 3 Tee', price: '£9.99', image: '/el aleyon 3 modcup.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
-        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
-        { name: 'King of Kings Second Tee', price: '£9.99', image: '/King of Kings secondmockup.png' },
-        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
+        { name: 'King of Kings Black Tee', price: '£9.99', image: '/kingof kings black modcup.png' },
+        { name: 'King of Kings Second Tee', price: '£9.99', image: '/king of kings second modcup.png' },
+        { name: 'The Price of Peace Tee', price: '£9.99', image: '/the price of peace modcup.png' },
+        { name: 'Price of Peace Sweat', price: '£19.99', image: '/price of peace sweat modcup.png' }
       ]
     },
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
       products: [
-        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ mockup.png' },
-        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me mockup.png' },
-        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' }
+        { name: 'Jesus Christ White Tee', price: '£9.99', image: '/jesus christ white modcup.png' },
+        { name: 'Jesus Cross Tee', price: '£9.99', image: '/jesus cross modcup.png' },
+        { name: 'Jesus Tee', price: '£9.99', image: '/jesus modcup.png' },
+        { name: 'Jesus The Way Front Tee', price: '£9.99', image: '/jesus the way front modcup.png' },
+        { name: 'Jesus The Way Truth Life Tee', price: '£9.99', image: '/jesus the way the truth and the life modcup.png' }
       ]
     },
     {
       title: 'Faith Collection',
       subtitle: 'Bold declarations of faith',
       products: [
-        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear mockup.png' },
-        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabaoth mockup.png' }
+        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/faith over fear modcup.png' },
+        { name: 'God Got Me Back Tee', price: '£9.99', image: '/god got me back modcup.png' },
+        { name: 'No Weapon Tee', price: '£9.99', image: '/no weapon modcup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh saboath modcup.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup - Copy.png' },
-        { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup.png' },
-        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup.png' },
-        { name: 'The Holy One Copy Tee', price: '£9.99', image: '/the holy one mockup - Copy.png' }
+        { name: 'The First and The Last Black Tee', price: '£9.99', image: '/the first and the last black modcup.png' },
+        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last modcup.png' },
+        { name: 'The Living God Tee', price: '£9.99', image: '/the living god modcup.png' },
+        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one modcup.png' },
+        { name: 'The Way Tee', price: '£9.99', image: '/the way modcup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life modcup.png' }
       ]
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time Is Running Out mockup.png' },
-        { name: 'Times Running Out Tee', price: '£9.99', image: '/times Running Out mockup.png' }
+        { name: 'Christian Identity Front Black Tee', price: '£9.99', image: '/christian identity front black modcup.png' },
+        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity modcup.png' },
+        { name: 'My Identity Tee', price: '£9.99', image: '/my identity modcup.png' },
+        { name: 'Redeemed Front Tee', price: '£9.99', image: '/redesmed front modcup.png' },
+        { name: 'The Almighty White Tee', price: '£9.99', image: '/the almighty white modcup.png' },
+        { name: 'Light of The World Tee', price: '£9.99', image: '/light of the world modcup.png' },
+        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time is Running Out modcup.png' },
+        { name: 'Times Running Out Tee', price: '£9.99', image: '/times Running Out modcup.png' }
       ]
     }
   ];
