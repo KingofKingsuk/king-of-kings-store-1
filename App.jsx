@@ -7,37 +7,6 @@ function App() {
   const [showLogoGallery, setShowLogoGallery] = useState(false);
   const [selectedLogo, setSelectedLogo] = useState(null);
 
-  // ALL 27 LOGO OPTIONS from your GitHub
-  const logoOptions = [
-    { id: 1, name: 'King of Kings Black', image: '/King of Kings black modcup.png', description: 'Bold statement piece' },
-    { id: 2, name: 'King of Kings Crest', image: '/King of Kings black silky modcup.png', description: 'Royal crown design' },
-    { id: 3, name: 'King of Kings Gold', image: '/King of Kings modcup.png', description: 'Regal gold finish' },
-    { id: 4, name: 'Light of The World', image: '/Light of the world modcup.png', description: 'Shine bright' },
-    { id: 5, name: 'The Way', image: '/The way modcup.png', description: 'Jesus is the way' },
-    { id: 6, name: 'Time is Running', image: '/Time is running modcup.png', description: 'Urgency of faith' },
-    { id: 7, name: 'Time is Running Alt', image: '/Time is running modcup.png.png', description: 'Today is the day' },
-    { id: 8, name: 'Christian Identity', image: '/christian identity modcup.png', description: 'Who you are in Christ' },
-    { id: 9, name: 'EL YON White', image: '/el eyon 1 modcup white.png', description: 'The Most High' },
-    { id: 10, name: 'EL YON Creme', image: '/el eyon 2 modcup creme.png', description: 'The Most High' },
-    { id: 11, name: 'Faith Over Fear', image: '/fath over fear modcup.png', description: 'Courage in Christ' },
-    { id: 12, name: 'God Got Me', image: '/god got me modcup.png', description: 'Faith statement' },
-    { id: 13, name: 'Jesus Christ', image: '/jesus christ modcup.png', description: 'Name above all names' },
-    { id: 14, name: 'Jesus Died For Me', image: '/jesus died for me modcup.png', description: 'Ultimate sacrifice' },
-    { id: 15, name: 'Jesus The Way', image: '/jesus the way modcup.png', description: 'The only way' },
-    { id: 16, name: 'The Way The Truth The Life', image: '/jesus the way the truth and the life mock up.png', description: 'John 14:6' },
-    { id: 17, name: 'My Identity', image: '/my identity modcup.png', description: 'Found in Him' },
-    { id: 18, name: 'No Weapon Formed', image: '/no weapon formed modcup.png', description: 'Isaiah 54:17' },
-    { id: 19, name: 'Redeemed', image: '/redeemed hoodie modcup.png', description: 'Bought with blood' },
-    { id: 20, name: 'The Almighty', image: '/the almighty white modcup.png', description: 'Bold declaration' },
-    { id: 21, name: 'The First and The Last', image: '/the first and the last modcup black.png', description: 'Alpha & Omega' },
-    { id: 22, name: 'The Holy One', image: '/the holy one modcup Gold white.png', description: 'Set apart' },
-    { id: 23, name: 'The Living God', image: '/the living god modcup white.png', description: 'He is alive' },
-    { id: 24, name: 'The Prince of Peace', image: '/the prince of peace modcup.png', description: 'Isaiah 9:6' },
-    { id: 25, name: 'The Way Truth Life', image: '/the way the truth and the life modcup.png', description: 'John 14:6' },
-    { id: 26, name: 'Time Is Running Out', image: '/time is Running Out modcup.png.png', description: 'Urgent call' },
-    { id: 27, name: 'Yahweh Saboath', image: '/yahweh sabotah modcup.png.png', description: 'Lord of hosts' }
-  ];
-
   // Product options
   const productOptions = [
     { id: 1, name: 'T-Shirt', price: '£9.99', icon: '👕', description: 'Classic fit • 100% cotton • Premium quality' },
@@ -45,7 +14,7 @@ function App() {
     { id: 3, name: 'Hoodie', price: '£29.99', icon: '🧥', description: 'Premium hoodie • Kangaroo pocket • Adjustable hood' }
   ];
 
-  // ALL PRODUCT COLLECTIONS with correct filenames
+  // ALL PRODUCT COLLECTIONS with EXACT filenames from your GitHub
   const collections = [
     {
       title: 'Signature Collection',
@@ -109,6 +78,36 @@ function App() {
         { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one modcup Gold white.png' }
       ]
     }
+  ];
+
+  // ALL LOGO OPTIONS for custom design page
+  const logoOptions = [
+    { id: 1, name: 'King of Kings Black', image: '/King of Kings black modcup.png', description: 'Bold statement piece' },
+    { id: 2, name: 'King of Kings Crest', image: '/King of Kings black silky modcup.png', description: 'Royal crown design' },
+    { id: 3, name: 'King of Kings Gold', image: '/King of Kings modcup.png', description: 'Regal gold finish' },
+    { id: 4, name: 'Light of The World', image: '/Light of the world modcup.png', description: 'Shine bright' },
+    { id: 5, name: 'The Way', image: '/The way modcup.png', description: 'Jesus is the way' },
+    { id: 6, name: 'Time is Running', image: '/Time is running modcup.png', description: 'Urgency of faith' },
+    { id: 7, name: 'Christian Identity', image: '/christian identity modcup.png', description: 'Who you are in Christ' },
+    { id: 8, name: 'EL YON White', image: '/el eyon 1 modcup white.png', description: 'The Most High' },
+    { id: 9, name: 'EL YON Creme', image: '/el eyon 2 modcup creme.png', description: 'The Most High' },
+    { id: 10, name: 'Faith Over Fear', image: '/fath over fear modcup.png', description: 'Courage in Christ' },
+    { id: 11, name: 'God Got Me', image: '/god got me modcup.png', description: 'Faith statement' },
+    { id: 12, name: 'Jesus Christ', image: '/jesus christ modcup.png', description: 'Name above all names' },
+    { id: 13, name: 'Jesus Died For Me', image: '/jesus died for me modcup.png', description: 'Ultimate sacrifice' },
+    { id: 14, name: 'Jesus The Way', image: '/jesus the way modcup.png', description: 'The only way' },
+    { id: 15, name: 'The Way The Truth The Life', image: '/jesus the way the truth and the life mock up.png', description: 'John 14:6' },
+    { id: 16, name: 'My Identity', image: '/my identity modcup.png', description: 'Found in Him' },
+    { id: 17, name: 'No Weapon Formed', image: '/no weapon formed modcup.png', description: 'Isaiah 54:17' },
+    { id: 18, name: 'Redeemed', image: '/redeemed hoodie modcup.png', description: 'Bought with blood' },
+    { id: 19, name: 'The Almighty', image: '/the almighty white modcup.png', description: 'Bold declaration' },
+    { id: 20, name: 'The First and The Last', image: '/the first and the last modcup black.png', description: 'Alpha & Omega' },
+    { id: 21, name: 'The Holy One', image: '/the holy one modcup Gold white.png', description: 'Set apart' },
+    { id: 22, name: 'The Living God', image: '/the living god modcup white.png', description: 'He is alive' },
+    { id: 23, name: 'The Prince of Peace', image: '/the prince of peace modcup.png', description: 'Isaiah 9:6' },
+    { id: 24, name: 'The Way Truth Life', image: '/the way the truth and the life modcup.png', description: 'John 14:6' },
+    { id: 25, name: 'Time Is Running Out', image: '/time is Running Out modcup.png.png', description: 'Urgent call' },
+    { id: 26, name: 'Yahweh Saboath', image: '/yahweh sabotah modcup.png.png', description: 'Lord of hosts' }
   ];
 
   const checkout = () => {
@@ -212,6 +211,7 @@ function App() {
   // Main Shop Page
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      {/* HERO SECTION */}
       <div style={{ padding: '80px 20px', textAlign: 'center', background: 'linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%)' }}>
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
         <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
@@ -219,6 +219,7 @@ function App() {
         <button onClick={checkout} style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>Shop Best Sellers</button>
       </div>
 
+      {/* WHO WE ARE SECTION */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px', alignItems: 'center' }}>
           <div>
@@ -232,6 +233,7 @@ function App() {
         </div>
       </div>
 
+      {/* OUR PROMISE SECTION */}
       <div style={{ backgroundColor: '#fafafa', padding: '80px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', textAlign: 'center', marginBottom: '16px' }}>Our Promise</h2>
@@ -244,6 +246,7 @@ function App() {
         </div>
       </div>
 
+      {/* PRODUCT COLLECTIONS */}
       {collections.map((collection, idx) => (
         <div key={idx} style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
@@ -254,7 +257,7 @@ function App() {
             {collection.products.map((product, i) => (
               <div key={i} style={{ backgroundColor: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #eee', display: 'flex', flexDirection: 'column', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}>
                 <div style={{ padding: '30px 20px', textAlign: 'center', backgroundColor: '#fafafa', minHeight: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setSelectedImage(product.image)}>
-                  <img src={product.image} alt={product.name} style={{ width: imageSize, height: 'auto', display: 'block', objectFit: 'contain', transition: 'transform 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Coming+Soon'; }} />
+                  <img src={product.image} alt={product.name} style={{ width: imageSize, height: 'auto', display: 'block', objectFit: 'contain', transition: 'transform 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Image+Not+Found'; console.error('Failed to load:', product.image); }} />
                 </div>
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 20px 0', textAlign: 'center' }}>{product.name}</h3>
@@ -269,6 +272,7 @@ function App() {
         </div>
       ))}
 
+      {/* CUSTOM DESIGN SECTION */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
         <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px', background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)' }}>
           <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
@@ -277,6 +281,7 @@ function App() {
         </div>
       </div>
 
+      {/* FOOTER */}
       <div style={{ backgroundColor: '#f5f5f5', padding: '40px 20px', marginTop: '40px', borderTop: '1px solid #eee' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
           <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>King of Kings</h3>
@@ -286,6 +291,7 @@ function App() {
         </div>
       </div>
 
+      {/* LIGHTBOX POPUP */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
