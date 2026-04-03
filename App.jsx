@@ -7,7 +7,7 @@ function App() {
   const [showLogoGallery, setShowLogoGallery] = useState(false);
   const [selectedLogo, setSelectedLogo] = useState(null);
 
-  // Product options
+  // Product options for custom design
   const productOptions = [
     { id: 1, name: 'T-Shirt', price: '£9.99', icon: '👕', description: 'Classic fit • 100% cotton • Premium quality' },
     { id: 2, name: 'Sweatshirt', price: '£19.99', icon: '👚', description: 'Oversized fit • Fleece lined • Comfortable' },
@@ -20,94 +20,59 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'EL YON White Tee', price: '£9.99', image: '/el eyon 1 modcup white.png' },
-        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el eyon 2 modcup creme.png' },
-        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white modcup.png' }
+        { name: 'EL YON White Tee', price: '£9.99', image: '/el eyon 1 mockup white.png' },
+        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el eyon 2 mockup creme.png' },
+        { name: 'The Almighty Tee', price: '£9.99', image: '/el eyon 1 mockup.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky modcup.png' },
-        { name: 'King of Kings Black Tee', price: '£9.99', image: '/King of Kings black modcup.png' },
-        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings modcup.png' },
-        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace modcup.png' }
+        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
+        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
+        { name: 'King of Kings Second Tee', price: '£9.99', image: '/King of Kings secondmockup.png' },
+        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
       ]
     },
     {
       title: 'Jesus Collection',
       subtitle: 'Declare His name boldly',
       products: [
-        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ modcup.png' },
-        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me modcup.png' },
-        { name: 'Jesus The Way Tee', price: '£9.99', image: '/jesus the way modcup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/jesus the way the truth and the life mock up.png' }
+        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ mockup.png' },
+        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me mockup.png' },
+        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' }
       ]
     },
     {
       title: 'Faith Collection',
       subtitle: 'Bold declarations of faith',
       products: [
-        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear modcup.png' },
-        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me modcup.png' },
-        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed modcup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotah modcup.png.png' }
+        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear mockup.png' },
+        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotah mockup.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last modcup black.png' },
-        { name: 'The Living God Tee', price: '£9.99', image: '/the living god modcup white.png' },
-        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world modcup.png' },
-        { name: 'The Way Tee', price: '£9.99', image: '/The way modcup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life modcup.png' }
+        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup - Copy.png' },
+        { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup.png' },
+        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup.png' },
+        { name: 'The Holy One - Copy Tee', price: '£9.99', image: '/the holy one mockup - Copy.png' }
       ]
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity modcup.png' },
-        { name: 'My Identity Tee', price: '£9.99', image: '/my identity modcup.png' },
-        { name: 'Time Is Running Tee', price: '£9.99', image: '/Time is running modcup.png' },
-        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time is Running Out modcup.png.png' },
-        { name: 'Redeemed Hoodie', price: '£9.99', image: '/redeemed hoodie modcup.png' },
-        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one modcup Gold white.png' }
+        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
+        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time Is Running Out mockup.png' },
+        { name: 'Times Running Out Tee', price: '£9.99', image: '/times Running Out mockup.png' }
       ]
     }
-  ];
-
-  // ALL LOGO OPTIONS for custom design page
-  const logoOptions = [
-    { id: 1, name: 'King of Kings Black', image: '/King of Kings black modcup.png', description: 'Bold statement piece' },
-    { id: 2, name: 'King of Kings Crest', image: '/King of Kings black silky modcup.png', description: 'Royal crown design' },
-    { id: 3, name: 'King of Kings Gold', image: '/King of Kings modcup.png', description: 'Regal gold finish' },
-    { id: 4, name: 'Light of The World', image: '/Light of the world modcup.png', description: 'Shine bright' },
-    { id: 5, name: 'The Way', image: '/The way modcup.png', description: 'Jesus is the way' },
-    { id: 6, name: 'Time is Running', image: '/Time is running modcup.png', description: 'Urgency of faith' },
-    { id: 7, name: 'Christian Identity', image: '/christian identity modcup.png', description: 'Who you are in Christ' },
-    { id: 8, name: 'EL YON White', image: '/el eyon 1 modcup white.png', description: 'The Most High' },
-    { id: 9, name: 'EL YON Creme', image: '/el eyon 2 modcup creme.png', description: 'The Most High' },
-    { id: 10, name: 'Faith Over Fear', image: '/fath over fear modcup.png', description: 'Courage in Christ' },
-    { id: 11, name: 'God Got Me', image: '/god got me modcup.png', description: 'Faith statement' },
-    { id: 12, name: 'Jesus Christ', image: '/jesus christ modcup.png', description: 'Name above all names' },
-    { id: 13, name: 'Jesus Died For Me', image: '/jesus died for me modcup.png', description: 'Ultimate sacrifice' },
-    { id: 14, name: 'Jesus The Way', image: '/jesus the way modcup.png', description: 'The only way' },
-    { id: 15, name: 'The Way The Truth The Life', image: '/jesus the way the truth and the life mock up.png', description: 'John 14:6' },
-    { id: 16, name: 'My Identity', image: '/my identity modcup.png', description: 'Found in Him' },
-    { id: 17, name: 'No Weapon Formed', image: '/no weapon formed modcup.png', description: 'Isaiah 54:17' },
-    { id: 18, name: 'Redeemed', image: '/redeemed hoodie modcup.png', description: 'Bought with blood' },
-    { id: 19, name: 'The Almighty', image: '/the almighty white modcup.png', description: 'Bold declaration' },
-    { id: 20, name: 'The First and The Last', image: '/the first and the last modcup black.png', description: 'Alpha & Omega' },
-    { id: 21, name: 'The Holy One', image: '/the holy one modcup Gold white.png', description: 'Set apart' },
-    { id: 22, name: 'The Living God', image: '/the living god modcup white.png', description: 'He is alive' },
-    { id: 23, name: 'The Prince of Peace', image: '/the prince of peace modcup.png', description: 'Isaiah 9:6' },
-    { id: 24, name: 'The Way Truth Life', image: '/the way the truth and the life modcup.png', description: 'John 14:6' },
-    { id: 25, name: 'Time Is Running Out', image: '/time is Running Out modcup.png.png', description: 'Urgent call' },
-    { id: 26, name: 'Yahweh Saboath', image: '/yahweh sabotah modcup.png.png', description: 'Lord of hosts' }
   ];
 
   const checkout = () => {
@@ -158,17 +123,15 @@ function App() {
           </div>
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
-              {logoOptions.map(logo => (
-                <div key={logo.id} onClick={() => handleLogoSelect(logo)} style={{ backgroundColor: 'white', border: '1px solid #eee', borderRadius: '16px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}>
-                  <img src={logo.image} alt={logo.name} style={{ width: '180px', height: 'auto', marginBottom: '16px', borderRadius: '8px' }} onError={(e) => { e.target.src = 'https://placehold.co/180x200/e2e8f0/666?text=Coming+Soon'; }} />
-                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>{logo.name}</h3>
-                  <p style={{ color: '#999', fontSize: '12px' }}>{logo.description}</p>
+              {collections.flatMap(c => c.products).map((product, idx) => (
+                <div key={idx} onClick={() => handleLogoSelect(product)} style={{ backgroundColor: 'white', border: '1px solid #eee', borderRadius: '16px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}>
+                  <img src={product.image} alt={product.name} style={{ width: '180px', height: 'auto', marginBottom: '16px', borderRadius: '8px' }} onError={(e) => { e.target.src = 'https://placehold.co/180x200/e2e8f0/666?text=Coming+Soon'; }} />
+                  <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>{product.name}</h3>
                   <button style={{ backgroundColor: 'black', color: 'white', padding: '8px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', marginTop: '16px' }}>Select This Design</button>
                 </div>
               ))}
             </div>
           </div>
-          <div style={{ textAlign: 'center', padding: '40px 20px', color: '#999', fontSize: '14px' }}><p>More designs coming soon! Custom scripture text available upon request.</p></div>
         </div>
       );
     }
