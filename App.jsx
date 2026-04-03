@@ -7,89 +7,106 @@ function App() {
   const [showLogoGallery, setShowLogoGallery] = useState(false);
   const [selectedLogo, setSelectedLogo] = useState(null);
 
-  // Logo options for customization (you can add more)
+  // ALL 27 LOGO OPTIONS from your GitHub
   const logoOptions = [
-    { id: 1, name: 'King of Kings Crest', image: '/King of Kings black silky mockup.png', description: 'Royal crown design' },
-    { id: 2, name: 'The Almighty', image: '/the almighty white mockup.png', description: 'Bold declaration' },
-    { id: 3, name: 'Light of The World', image: '/Light of the world mockup.png', description: 'Shine bright' },
-    { id: 4, name: 'The Way', image: '/The way mockup.png', description: 'Jesus is the way' },
-    { id: 5, name: 'The First and The Last', image: '/the first and the last mockup black.png', description: 'Alpha & Omega' },
-    { id: 6, name: 'No Weapon Formed', image: '/no weapon formed mockup.png', description: 'Isaiah 54:17' },
-    { id: 7, name: 'God Got Me', image: '/god got me mockup.png', description: 'Faith statement' },
-    { id: 8, name: 'The Prince of Peace', image: '/the prince of peace mockup.png', description: 'Isaiah 9:6' }
+    { id: 1, name: 'King of Kings Black', image: '/King of Kings black modcup.png', description: 'Bold statement piece' },
+    { id: 2, name: 'King of Kings Crest', image: '/King of Kings black silky modcup.png', description: 'Royal crown design' },
+    { id: 3, name: 'King of Kings Gold', image: '/King of Kings modcup.png', description: 'Regal gold finish' },
+    { id: 4, name: 'Light of The World', image: '/Light of the world modcup.png', description: 'Shine bright' },
+    { id: 5, name: 'The Way', image: '/The way modcup.png', description: 'Jesus is the way' },
+    { id: 6, name: 'Time is Running', image: '/Time is running modcup.png', description: 'Urgency of faith' },
+    { id: 7, name: 'Time is Running Alt', image: '/Time is running modcup.png.png', description: 'Today is the day' },
+    { id: 8, name: 'Christian Identity', image: '/christian identity modcup.png', description: 'Who you are in Christ' },
+    { id: 9, name: 'EL YON White', image: '/el eyon 1 modcup white.png', description: 'The Most High' },
+    { id: 10, name: 'EL YON Creme', image: '/el eyon 2 modcup creme.png', description: 'The Most High' },
+    { id: 11, name: 'Faith Over Fear', image: '/fath over fear modcup.png', description: 'Courage in Christ' },
+    { id: 12, name: 'God Got Me', image: '/god got me modcup.png', description: 'Faith statement' },
+    { id: 13, name: 'Jesus Christ', image: '/jesus christ modcup.png', description: 'Name above all names' },
+    { id: 14, name: 'Jesus Died For Me', image: '/jesus died for me modcup.png', description: 'Ultimate sacrifice' },
+    { id: 15, name: 'Jesus The Way', image: '/jesus the way modcup.png', description: 'The only way' },
+    { id: 16, name: 'The Way The Truth The Life', image: '/jesus the way the truth and the life mock up.png', description: 'John 14:6' },
+    { id: 17, name: 'My Identity', image: '/my identity modcup.png', description: 'Found in Him' },
+    { id: 18, name: 'No Weapon Formed', image: '/no weapon formed modcup.png', description: 'Isaiah 54:17' },
+    { id: 19, name: 'Redeemed', image: '/redeemed hoodie modcup.png', description: 'Bought with blood' },
+    { id: 20, name: 'The Almighty', image: '/the almighty white modcup.png', description: 'Bold declaration' },
+    { id: 21, name: 'The First and The Last', image: '/the first and the last modcup black.png', description: 'Alpha & Omega' },
+    { id: 22, name: 'The Holy One', image: '/the holy one modcup Gold white.png', description: 'Set apart' },
+    { id: 23, name: 'The Living God', image: '/the living god modcup white.png', description: 'He is alive' },
+    { id: 24, name: 'The Prince of Peace', image: '/the prince of peace modcup.png', description: 'Isaiah 9:6' },
+    { id: 25, name: 'The Way Truth Life', image: '/the way the truth and the life modcup.png', description: 'John 14:6' },
+    { id: 26, name: 'Time Is Running Out', image: '/time is Running Out modcup.png.png', description: 'Urgent call' },
+    { id: 27, name: 'Yahweh Saboath', image: '/yahweh sabotah modcup.png.png', description: 'Lord of hosts' }
   ];
 
-  // Product options with realistic icons and custom prices
+  // Product options
   const productOptions = [
-    { 
-      id: 1, 
-      name: 'T-Shirt', 
-      price: '£9.99', 
-      icon: '👕',
-      iconStyle: { fontSize: '60px', display: 'block' },
-      description: 'Classic fit • 100% cotton • Premium quality'
-    },
-    { 
-      id: 2, 
-      name: 'Sweatshirt', 
-      price: '£19.99', 
-      icon: '👚',
-      iconStyle: { fontSize: '60px', display: 'block' },
-      description: 'Oversized fit • Fleece lined • Comfortable'
-    },
-    { 
-      id: 3, 
-      name: 'Hoodie', 
-      price: '£29.99', 
-      icon: '🧥',
-      iconStyle: { fontSize: '60px', display: 'block' },
-      description: 'Premium hoodie • Kangaroo pocket • Adjustable hood'
-    }
+    { id: 1, name: 'T-Shirt', price: '£9.99', icon: '👕', description: 'Classic fit • 100% cotton • Premium quality' },
+    { id: 2, name: 'Sweatshirt', price: '£19.99', icon: '👚', description: 'Oversized fit • Fleece lined • Comfortable' },
+    { id: 3, name: 'Hoodie', price: '£29.99', icon: '🧥', description: 'Premium hoodie • Kangaroo pocket • Adjustable hood' }
   ];
 
-  // ALL WORKING PRODUCTS
+  // ALL PRODUCT COLLECTIONS with correct filenames
   const collections = [
     {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white mockup.png' }
+        { name: 'EL YON White Tee', price: '£9.99', image: '/el eyon 1 modcup white.png' },
+        { name: 'EL YON Creme Tee', price: '£9.99', image: '/el eyon 2 modcup creme.png' },
+        { name: 'The Almighty Tee', price: '£9.99', image: '/the almighty white modcup.png' }
       ]
     },
     {
       title: 'Royal Collection',
       subtitle: 'Crest and kingdom inspired premium wear',
       products: [
-        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky mockup.png' },
-        { name: 'King of Kings Black Tee', price: '£9.99', image: '/King of Kings black mockup.png.png' },
-        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings mockup.png' },
-        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace mockup.png' }
+        { name: 'King of Kings Crest Tee', price: '£9.99', image: '/King of Kings black silky modcup.png' },
+        { name: 'King of Kings Black Tee', price: '£9.99', image: '/King of Kings black modcup.png' },
+        { name: 'King of Kings Gold Tee', price: '£9.99', image: '/King of Kings modcup.png' },
+        { name: 'The Prince of Peace Tee', price: '£9.99', image: '/the prince of peace modcup.png' }
+      ]
+    },
+    {
+      title: 'Jesus Collection',
+      subtitle: 'Declare His name boldly',
+      products: [
+        { name: 'Jesus Christ Tee', price: '£9.99', image: '/jesus christ modcup.png' },
+        { name: 'Jesus Died For Me Tee', price: '£9.99', image: '/jesus died for me modcup.png' },
+        { name: 'Jesus The Way Tee', price: '£9.99', image: '/jesus the way modcup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/jesus the way the truth and the life mock up.png' }
       ]
     },
     {
       title: 'Faith Collection',
       subtitle: 'Bold declarations of faith',
       products: [
-        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me mockup.png' },
-        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' }
+        { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear modcup.png' },
+        { name: 'God Got Me Tee', price: '£9.99', image: '/god got me modcup.png' },
+        { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed modcup.png' },
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotah modcup.png.png' }
       ]
     },
     {
       title: 'Scripture Collection',
       subtitle: 'Wear the Word boldly',
       products: [
-        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world mockup.png' },
-        { name: 'The Way Tee', price: '£9.99', image: '/The way mockup.png' },
-        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life mockup.png' },
-        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup black.png' }
+        { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last modcup black.png' },
+        { name: 'The Living God Tee', price: '£9.99', image: '/the living god modcup white.png' },
+        { name: 'Light of The World Tee', price: '£9.99', image: '/Light of the world modcup.png' },
+        { name: 'The Way Tee', price: '£9.99', image: '/The way modcup.png' },
+        { name: 'The Way The Truth The Life Tee', price: '£9.99', image: '/the way the truth and the life modcup.png' }
       ]
     },
     {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { name: 'My Identity Tee', price: '£9.99', image: '/my identity mockup.png' },
-        { name: 'Time Is Running Tee', price: '£9.99', image: '/Time is running mockup.png' }
+        { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity modcup.png' },
+        { name: 'My Identity Tee', price: '£9.99', image: '/my identity modcup.png' },
+        { name: 'Time Is Running Tee', price: '£9.99', image: '/Time is running modcup.png' },
+        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time is Running Out modcup.png.png' },
+        { name: 'Redeemed Hoodie', price: '£9.99', image: '/redeemed hoodie modcup.png' },
+        { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one modcup Gold white.png' }
       ]
     }
   ];
@@ -114,7 +131,6 @@ function App() {
 
   const handleLogoSelect = (logo) => {
     setSelectedLogo(logo);
-    // You can add to cart or proceed to checkout here
     alert(`Added to cart: ${selectedProduct.name} with ${logo.name} design!\n\nTotal: ${selectedProduct.price}\n\nProceed to checkout?`);
     checkout();
   };
@@ -129,188 +145,63 @@ function App() {
 
   // Custom Design Page
   if (showCustomPage) {
-    // Logo Gallery Page (shown after selecting a garment)
     if (showLogoGallery && selectedProduct) {
       return (
         <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-          {/* Back Button */}
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
-            <button 
-              onClick={handleBackToProducts}
-              style={{ backgroundColor: 'transparent', color: 'black', padding: '10px 20px', borderRadius: '30px', border: '1px solid #ddd', cursor: 'pointer', fontSize: '14px' }}
-            >
-              ← Back to Garment Selection
-            </button>
+            <button onClick={handleBackToProducts} style={{ backgroundColor: 'transparent', color: 'black', padding: '10px 20px', borderRadius: '30px', border: '1px solid #ddd', cursor: 'pointer', fontSize: '14px' }}>← Back to Garment Selection</button>
           </div>
-
-          {/* Header */}
           <div style={{ textAlign: 'center', padding: '40px 20px' }}>
             <div style={{ fontSize: '60px', marginBottom: '16px' }}>{selectedProduct.icon}</div>
             <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '16px' }}>Choose Your Design</h1>
-            <p style={{ color: '#666', fontSize: '18px' }}>
-              Selected: {selectedProduct.name} - {selectedProduct.price}
-            </p>
+            <p style={{ color: '#666', fontSize: '18px' }}>Selected: {selectedProduct.name} - {selectedProduct.price}</p>
             <p style={{ color: '#999', fontSize: '14px', marginTop: '8px' }}>{selectedProduct.description}</p>
           </div>
-
-          {/* Logo Gallery */}
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-              gap: '30px' 
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
               {logoOptions.map(logo => (
-                <div 
-                  key={logo.id}
-                  onClick={() => handleLogoSelect(logo)}
-                  style={{ 
-                    backgroundColor: 'white',
-                    border: '1px solid #eee',
-                    borderRadius: '16px',
-                    padding: '24px',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}
-                >
-                  <img 
-                    src={logo.image} 
-                    alt={logo.name} 
-                    style={{ 
-                      width: '180px', 
-                      height: 'auto', 
-                      marginBottom: '16px',
-                      borderRadius: '8px'
-                    }} 
-                  />
+                <div key={logo.id} onClick={() => handleLogoSelect(logo)} style={{ backgroundColor: 'white', border: '1px solid #eee', borderRadius: '16px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}>
+                  <img src={logo.image} alt={logo.name} style={{ width: '180px', height: 'auto', marginBottom: '16px', borderRadius: '8px' }} onError={(e) => { e.target.src = 'https://placehold.co/180x200/e2e8f0/666?text=Coming+Soon'; }} />
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>{logo.name}</h3>
                   <p style={{ color: '#999', fontSize: '12px' }}>{logo.description}</p>
-                  <button 
-                    style={{ 
-                      backgroundColor: 'black', 
-                      color: 'white', 
-                      padding: '8px 20px', 
-                      borderRadius: '30px', 
-                      border: 'none', 
-                      cursor: 'pointer', 
-                      fontSize: '14px',
-                      marginTop: '16px'
-                    }}
-                  >
-                    Select This Design
-                  </button>
+                  <button style={{ backgroundColor: 'black', color: 'white', padding: '8px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', marginTop: '16px' }}>Select This Design</button>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Footer Note */}
-          <div style={{ textAlign: 'center', padding: '40px 20px', color: '#999', fontSize: '14px' }}>
-            <p>More designs coming soon! Custom scripture text available upon request.</p>
-          </div>
+          <div style={{ textAlign: 'center', padding: '40px 20px', color: '#999', fontSize: '14px' }}><p>More designs coming soon! Custom scripture text available upon request.</p></div>
         </div>
       );
     }
-
-    // Garment Selection Page
     return (
       <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-        {/* Back Button */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
-          <button 
-            onClick={() => setShowCustomPage(false)}
-            style={{ backgroundColor: 'transparent', color: 'black', padding: '10px 20px', borderRadius: '30px', border: '1px solid #ddd', cursor: 'pointer', fontSize: '14px' }}
-          >
-            ← Back to Shop
-          </button>
+          <button onClick={() => setShowCustomPage(false)} style={{ backgroundColor: 'transparent', color: 'black', padding: '10px 20px', borderRadius: '30px', border: '1px solid #ddd', cursor: 'pointer', fontSize: '14px' }}>← Back to Shop</button>
         </div>
-
-        {/* Header */}
         <div style={{ textAlign: 'center', padding: '60px 20px 40px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '16px' }}>Create Your Own Design</h1>
-          <p style={{ color: '#666', fontSize: '18px', maxWidth: '600px', margin: '0 auto' }}>
-            Choose your garment to get started. Each piece is custom printed with your selected design.
-          </p>
+          <p style={{ color: '#666', fontSize: '18px', maxWidth: '600px', margin: '0 auto' }}>Choose your garment to get started. Each piece is custom printed with your selected design.</p>
         </div>
-
-        {/* Garment Selection Cards */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 20px 60px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
             {productOptions.map(product => (
-              <div 
-                key={product.id}
-                onClick={() => handleProductSelect(product)}
-                style={{ 
-                  backgroundColor: 'white',
-                  border: '2px solid #f0f0f0',
-                  borderRadius: '24px',
-                  padding: '40px',
-                  textAlign: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)'
-                }}
-                onMouseEnter={(e) => { 
-                  e.currentTarget.style.transform = 'translateY(-8px)'; 
-                  e.currentTarget.style.borderColor = '#b8860b';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.15)';
-                }}
-                onMouseLeave={(e) => { 
-                  e.currentTarget.style.transform = 'translateY(0)'; 
-                  e.currentTarget.style.borderColor = '#f0f0f0';
-                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
-                }}
-              >
+              <div key={product.id} onClick={() => handleProductSelect(product)} style={{ backgroundColor: 'white', border: '2px solid #f0f0f0', borderRadius: '24px', padding: '40px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.borderColor = '#b8860b'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = '#f0f0f0'; }}>
                 <div style={{ fontSize: '80px', marginBottom: '20px' }}>{product.icon}</div>
                 <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px' }}>{product.name}</h2>
                 <p style={{ fontSize: '24px', color: '#b8860b', fontWeight: 'bold', marginBottom: '16px' }}>{product.price}</p>
                 <p style={{ color: '#666', fontSize: '14px', marginBottom: '24px' }}>{product.description}</p>
-                <button 
-                  style={{ 
-                    backgroundColor: 'black', 
-                    color: 'white', 
-                    padding: '12px 28px', 
-                    borderRadius: '30px', 
-                    border: 'none', 
-                    cursor: 'pointer', 
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    transition: 'background 0.2s'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'black'}
-                >
-                  Choose {product.name} →
-                </button>
+                <button style={{ backgroundColor: 'black', color: 'white', padding: '12px 28px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500' }}>Choose {product.name} →</button>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Information Section */}
         <div style={{ backgroundColor: '#fafafa', padding: '60px 20px' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
             <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>How It Works</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px', marginTop: '30px' }}>
-              <div>
-                <div style={{ fontSize: '30px', marginBottom: '10px' }}>1</div>
-                <p><strong>Choose Garment</strong></p>
-                <p style={{ fontSize: '14px', color: '#666' }}>Select T-Shirt, Sweatshirt, or Hoodie</p>
-              </div>
-              <div>
-                <div style={{ fontSize: '30px', marginBottom: '10px' }}>2</div>
-                <p><strong>Pick a Design</strong></p>
-                <p style={{ fontSize: '14px', color: '#666' }}>Choose from our faith-led logo collection</p>
-              </div>
-              <div>
-                <div style={{ fontSize: '30px', marginBottom: '10px' }}>3</div>
-                <p><strong>Place Order</strong></p>
-                <p style={{ fontSize: '14px', color: '#666' }}>We'll print and ship your custom piece</p>
-              </div>
+              <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>1</div><p><strong>Choose Garment</strong></p><p style={{ fontSize: '14px', color: '#666' }}>Select T-Shirt, Sweatshirt, or Hoodie</p></div>
+              <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>2</div><p><strong>Pick a Design</strong></p><p style={{ fontSize: '14px', color: '#666' }}>Choose from our faith-led logo collection</p></div>
+              <div><div style={{ fontSize: '30px', marginBottom: '10px' }}>3</div><p><strong>Place Order</strong></p><p style={{ fontSize: '14px', color: '#666' }}>We'll print and ship your custom piece</p></div>
             </div>
           </div>
         </div>
@@ -321,72 +212,38 @@ function App() {
   // Main Shop Page
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-      
-      {/* HERO SECTION */}
       <div style={{ padding: '80px 20px', textAlign: 'center', background: 'linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%)' }}>
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
         <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
-        <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>
-          Premium faith-led apparel crafted to make belief visible.
-        </p>
-        <button onClick={checkout} style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
-          Shop Best Sellers
-        </button>
+        <p style={{ maxWidth: '600px', margin: '0 auto 32px', fontSize: '20px', color: '#666' }}>Premium faith-led apparel crafted to make belief visible.</p>
+        <button onClick={checkout} style={{ backgroundColor: 'black', color: 'white', padding: '16px 32px', borderRadius: '32px', fontSize: '18px', border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>Shop Best Sellers</button>
       </div>
 
-      {/* WHO WE ARE SECTION */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px', alignItems: 'center' }}>
           <div>
             <p style={{ color: '#b8860b', letterSpacing: '2px', fontSize: '14px', marginBottom: '16px' }}>OUR STORY</p>
             <h2 style={{ fontSize: '40px', fontWeight: 'bold', marginBottom: '24px', lineHeight: '1.2' }}>More Than a T-Shirt</h2>
-            <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6', marginBottom: '20px' }}>
-              King of Kings was born from a simple yet powerful calling: to turn everyday apparel into a tool for ministry. 
-              We noticed a gap in the market for clothing that is both fashion-forward and unapologetically bold in its faith.
-            </p>
-            <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6', marginBottom: '20px' }}>
-              In a culture constantly searching for identity and hope, we believe believers are called to be a light. 
-              Our mission is to equip you with high-quality, stylish apparel that makes sharing your faith as simple as 
-              getting dressed in the morning.
-            </p>
-            <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6' }}>
-              Every shirt is a seed, every hoodie a potential prayer, and every design an opportunity to point someone 
-              back to the love of Jesus Christ.
-            </p>
+            <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6', marginBottom: '20px' }}>King of Kings was born from a simple yet powerful calling: to turn everyday apparel into a tool for ministry. We noticed a gap in the market for clothing that is both fashion-forward and unapologetically bold in its faith.</p>
+            <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6', marginBottom: '20px' }}>In a culture constantly searching for identity and hope, we believe believers are called to be a light. Our mission is to equip you with high-quality, stylish apparel that makes sharing your faith as simple as getting dressed in the morning.</p>
+            <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6' }}>Every shirt is a seed, every hoodie a potential prayer, and every design an opportunity to point someone back to the love of Jesus Christ.</p>
           </div>
-          <div style={{ backgroundColor: '#f0f0f0', borderRadius: '24px', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url(https://placehold.co/600x400/e2e8f0/666?text=Our+Mission)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' }}>
-          </div>
+          <div style={{ backgroundColor: '#f0f0f0', borderRadius: '24px', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url(https://placehold.co/600x400/e2e8f0/666?text=Our+Mission)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' }}></div>
         </div>
       </div>
 
-      {/* OUR PROMISE SECTION */}
       <div style={{ backgroundColor: '#fafafa', padding: '80px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', textAlign: 'center', marginBottom: '16px' }}>Our Promise</h2>
-          <p style={{ textAlign: 'center', color: '#666', marginBottom: '50px', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-            Rooted in Christ, driven by purpose, committed to excellence
-          </p>
+          <p style={{ textAlign: 'center', color: '#666', marginBottom: '50px', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>Rooted in Christ, driven by purpose, committed to excellence</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px' }}>
-            <div style={{ textAlign: 'center', padding: '30px', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-              <div style={{ fontSize: '48px', marginBottom: '20px' }}>👕</div>
-              <h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '16px' }}>Premium Quality</h3>
-              <p style={{ color: '#666', lineHeight: '1.6' }}>We are committed to providing apparel that lasts. From our oversized fits to our premium fabrics, you'll receive a garment you'll be proud to wear for years.</p>
-            </div>
-            <div style={{ textAlign: 'center', padding: '30px', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-              <div style={{ fontSize: '48px', marginBottom: '20px' }}>✝️</div>
-              <h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '16px' }}>Kingdom Purpose</h3>
-              <p style={{ color: '#666', lineHeight: '1.6' }}>This brand is not about us; it's about Him. A portion of every purchase supports missions and spreading the Gospel around the world.</p>
-            </div>
-            <div style={{ textAlign: 'center', padding: '30px', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-              <div style={{ fontSize: '48px', marginBottom: '20px' }}>🤝</div>
-              <h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '16px' }}>A Community of Faith</h3>
-              <p style={{ color: '#666', lineHeight: '1.6' }}>When you wear King of Kings, you join a global family of believers who are unashamed of the Gospel. You are seen, loved, and part of our story.</p>
-            </div>
+            <div style={{ textAlign: 'center', padding: '30px', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}><div style={{ fontSize: '48px', marginBottom: '20px' }}>👕</div><h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '16px' }}>Premium Quality</h3><p style={{ color: '#666', lineHeight: '1.6' }}>We are committed to providing apparel that lasts. From our oversized fits to our premium fabrics, you'll receive a garment you'll be proud to wear for years.</p></div>
+            <div style={{ textAlign: 'center', padding: '30px', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}><div style={{ fontSize: '48px', marginBottom: '20px' }}>✝️</div><h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '16px' }}>Kingdom Purpose</h3><p style={{ color: '#666', lineHeight: '1.6' }}>This brand is not about us; it's about Him. A portion of every purchase supports missions and spreading the Gospel around the world.</p></div>
+            <div style={{ textAlign: 'center', padding: '30px', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}><div style={{ fontSize: '48px', marginBottom: '20px' }}>🤝</div><h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '16px' }}>A Community of Faith</h3><p style={{ color: '#666', lineHeight: '1.6' }}>When you wear King of Kings, you join a global family of believers who are unashamed of the Gospel. You are seen, loved, and part of our story.</p></div>
           </div>
         </div>
       </div>
 
-      {/* PRODUCT COLLECTIONS */}
       {collections.map((collection, idx) => (
         <div key={idx} style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
@@ -397,7 +254,7 @@ function App() {
             {collection.products.map((product, i) => (
               <div key={i} style={{ backgroundColor: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #eee', display: 'flex', flexDirection: 'column', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; }}>
                 <div style={{ padding: '30px 20px', textAlign: 'center', backgroundColor: '#fafafa', minHeight: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setSelectedImage(product.image)}>
-                  <img src={product.image} alt={product.name} style={{ width: imageSize, height: 'auto', display: 'block', objectFit: 'contain', transition: 'transform 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} />
+                  <img src={product.image} alt={product.name} style={{ width: imageSize, height: 'auto', display: 'block', objectFit: 'contain', transition: 'transform 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/240x300/e2e8f0/666?text=Coming+Soon'; }} />
                 </div>
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 20px 0', textAlign: 'center' }}>{product.name}</h3>
@@ -412,23 +269,14 @@ function App() {
         </div>
       ))}
 
-      {/* CUSTOM DESIGN SECTION */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
         <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px', background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)' }}>
           <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
           <p style={{ color: '#ccc', margin: '0 0 24px 0', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>Personal scripture, declarations, and faith-led typography. Wear your testimony.</p>
-          <button 
-            onClick={handleCustomDesign}
-            style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500', transition: 'transform 0.2s' }} 
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} 
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Start Custom Design →
-          </button>
+          <button onClick={handleCustomDesign} style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>Start Custom Design →</button>
         </div>
       </div>
 
-      {/* FOOTER */}
       <div style={{ backgroundColor: '#f5f5f5', padding: '40px 20px', marginTop: '40px', borderTop: '1px solid #eee' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
           <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>King of Kings</h3>
@@ -438,7 +286,6 @@ function App() {
         </div>
       </div>
 
-      {/* LIGHTBOX POPUP */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
