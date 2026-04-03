@@ -3,7 +3,7 @@ function App() {
     <div style={{ padding: '40px', textAlign: 'center' }}>
       <h1>King of Kings - Image Test</h1>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', maxWidth: '800px', margin: '0 auto' }}>
+      <div  style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', maxWidth: '800px', margin: '0 auto' }}>
         <div>
           <img src="/el elyon 1 mockup white.png" alt="test" style={{ width: '200px' }} />
           <p>el elyon 1 mockup white.png</p>
