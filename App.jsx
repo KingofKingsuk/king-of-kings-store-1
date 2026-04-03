@@ -2,6 +2,28 @@ import { useState } from 'react';
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showCustomPage, setShowCustomPage] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedLogo, setSelectedLogo] = useState(null);
+
+  // Logo options for customization
+  const logoOptions = [
+    { id: 1, name: 'King of Kings Crest', image: '/King of Kings black silky mockup.png' },
+    { id: 2, name: 'The Almighty', image: '/the almighty white mockup.png' },
+    { id: 3, name: 'Light of The World', image: '/Light of the world mockup.png' },
+    { id: 4, name: 'The Way', image: '/The way mockup.png' },
+    { id: 5, name: 'The First and The Last', image: '/the first and the last mockup black.png' },
+    { id: 6, name: 'No Weapon Formed', image: '/no weapon formed mockup.png' },
+    { id: 7, name: 'God Got Me', image: '/god got me mockup.png' },
+    { id: 8, name: 'The Prince of Peace', image: '/the prince of peace mockup.png' }
+  ];
+
+  // Product options
+  const productOptions = [
+    { id: 1, name: 'T-Shirt', price: '£24.99', icon: '👕' },
+    { id: 2, name: 'Hoodie', price: '£49.99', icon: '🧥' },
+    { id: 3, name: 'Sweatshirt', price: '£44.99', icon: '👚' }
+  ];
 
   // ALL WORKING PRODUCTS
   const collections = [
@@ -54,9 +76,132 @@ function App() {
     window.open('https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01', '_blank');
   };
 
+  const handleCustomDesign = () => {
+    setShowCustomPage(true);
+    window.scrollTo(0, 0);
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedProduct) {
+      alert('Please select a product type (T-Shirt, Hoodie, or Sweatshirt)');
+      return;
+    }
+    if (!selectedLogo) {
+      alert('Please select a logo design');
+      return;
+    }
+    // Here you would add to cart or go to checkout
+    alert(`Added to cart: ${selectedProduct.name} with ${selectedLogo.name} design!\n\nProceed to checkout?`);
+    checkout();
+  };
+
   const imageSize = '240px';
   const popupSize = '576px';
 
+  // If showing custom design page, render that instead
+  if (showCustomPage) {
+    return (
+      <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+        {/* Back Button */}
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+          <button 
+            onClick={() => setShowCustomPage(false)}
+            style={{ backgroundColor: 'transparent', color: 'black', padding: '10px 20px', borderRadius: '30px', border: '1px solid #ddd', cursor: 'pointer', fontSize: '14px' }}
+          >
+            ← Back to Shop
+          </button>
+        </div>
+
+        {/* Custom Design Header */}
+        <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '16px' }}>Create Your Own Design</h1>
+          <p style={{ color: '#666', fontSize: '18px' }}>Choose your garment and logo to create a unique faith-led piece</p>
+        </div>
+
+        {/* Step 1: Choose Product */}
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '30px', textAlign: 'center' }}>Step 1: Choose Your Garment</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+            {productOptions.map(product => (
+              <div 
+                key={product.id}
+                onClick={() => setSelectedProduct(product)}
+                style={{ 
+                  backgroundColor: selectedProduct?.id === product.id ? '#f0f0f0' : 'white',
+                  border: selectedProduct?.id === product.id ? '2px solid black' : '1px solid #eee',
+                  borderRadius: '16px',
+                  padding: '30px',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <div style={{ fontSize: '48px', marginBottom: '16px' }}>{product.icon}</div>
+                <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>{product.name}</h3>
+                <p style={{ color: '#b8860b', fontWeight: 'bold' }}>{product.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Step 2: Choose Logo */}
+        <div style={{ backgroundColor: '#fafafa', padding: '60px 20px' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '30px', textAlign: 'center' }}>Step 2: Choose Your Design</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px' }}>
+              {logoOptions.map(logo => (
+                <div 
+                  key={logo.id}
+                  onClick={() => setSelectedLogo(logo)}
+                  style={{ 
+                    backgroundColor: selectedLogo?.id === logo.id ? '#f0f0f0' : 'white',
+                    border: selectedLogo?.id === logo.id ? '2px solid black' : '1px solid #eee',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  <img src={logo.image} alt={logo.name} style={{ width: '120px', height: 'auto', marginBottom: '16px' }} />
+                  <h3 style={{ fontSize: '16px', fontWeight: 'bold' }}>{logo.name}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Summary and Checkout */}
+        <div style={{ maxWidth: '600px', margin: '0 auto', padding: '60px 20px', textAlign: 'center' }}>
+          <div style={{ backgroundColor: '#f5f5f5', borderRadius: '16px', padding: '30px' }}>
+            <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '20px' }}>Your Custom Design</h3>
+            {selectedProduct && <p><strong>Garment:</strong> {selectedProduct.name} - {selectedProduct.price}</p>}
+            {selectedLogo && <p><strong>Design:</strong> {selectedLogo.name}</p>}
+            {!selectedProduct && <p style={{ color: '#999' }}>No garment selected</p>}
+            {!selectedLogo && <p style={{ color: '#999' }}>No design selected</p>}
+            <button 
+              onClick={handleAddToCart}
+              style={{ 
+                backgroundColor: 'black', 
+                color: 'white', 
+                padding: '16px 32px', 
+                borderRadius: '32px', 
+                fontSize: '18px', 
+                border: 'none', 
+                cursor: 'pointer', 
+                marginTop: '20px',
+                width: '100%'
+              }}
+            >
+              Continue to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Main Shop Page (original content)
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       
@@ -150,12 +295,19 @@ function App() {
         </div>
       ))}
 
-      {/* CUSTOM DESIGN SECTION */}
+      {/* CUSTOM DESIGN SECTION - UPDATED BUTTON */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
         <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px', background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)' }}>
           <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
           <p style={{ color: '#ccc', margin: '0 0 24px 0', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>Personal scripture, declarations, and faith-led typography. Wear your testimony.</p>
-          <button onClick={checkout} style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>Start Custom Design</button>
+          <button 
+            onClick={handleCustomDesign}
+            style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500', transition: 'transform 0.2s' }} 
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} 
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            Start Custom Design →
+          </button>
         </div>
       </div>
 
