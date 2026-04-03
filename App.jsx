@@ -14,7 +14,7 @@ function App() {
     { id: 3, name: 'Hoodie', price: '£29.99', icon: '🧥', description: 'Premium hoodie • Kangaroo pocket • Adjustable hood' }
   ];
 
-  // ALL PRODUCT COLLECTIONS with EXACT filenames from your GitHub
+  // ALL PRODUCT COLLECTIONS with EXACT filenames from your GitHub (case-sensitive!)
   const collections = [
     {
       title: 'Signature Collection',
@@ -22,7 +22,7 @@ function App() {
       products: [
         { name: 'EL YON White Tee', price: '£9.99', image: '/el eyon 1 mockup white.png' },
         { name: 'EL YON Creme Tee', price: '£9.99', image: '/el eyon 2 mockup creme.png' },
-        { name: 'The Almighty Tee', price: '£9.99', image: '/el eyon 1 mockup.png' }
+        { name: 'EL YON Tee', price: '£9.99', image: '/el eyon 1 mockup.png' }
       ]
     },
     {
@@ -51,7 +51,7 @@ function App() {
       products: [
         { name: 'Faith Over Fear Tee', price: '£9.99', image: '/fath over fear mockup.png' },
         { name: 'No Weapon Formed Tee', price: '£9.99', image: '/no weapon formed mockup.png' },
-        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabotah mockup.png' }
+        { name: 'Yahweh Saboath Tee', price: '£9.99', image: '/yahweh sabaoth mockup.png' }
       ]
     },
     {
@@ -61,7 +61,7 @@ function App() {
         { name: 'The First and The Last Tee', price: '£9.99', image: '/the first and the last mockup - Copy.png' },
         { name: 'The Living God Tee', price: '£9.99', image: '/the living god mockup.png' },
         { name: 'The Holy One Tee', price: '£9.99', image: '/the holy one mockup.png' },
-        { name: 'The Holy One - Copy Tee', price: '£9.99', image: '/the holy one mockup - Copy.png' }
+        { name: 'The Holy One Copy Tee', price: '£9.99', image: '/the holy one mockup - Copy.png' }
       ]
     },
     {
@@ -69,7 +69,7 @@ function App() {
       subtitle: 'Who you are in Christ',
       products: [
         { name: 'Christian Identity Tee', price: '£9.99', image: '/christian identity mockup.png' },
-        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time Is Running Out mockup.png' },
+        { name: 'Time Is Running Out Tee', price: '£9.99', image: '/time is Running Out mockup.png' },
         { name: 'Times Running Out Tee', price: '£9.99', image: '/times Running Out mockup.png' }
       ]
     }
