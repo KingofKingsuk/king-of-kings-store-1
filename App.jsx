@@ -438,4 +438,13 @@ function App() {
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
-            <img src={selectedImage} alt="Product preview" style={{ width: '100%', height: 'auto', maxWidth: popupSize, display: 'block', margin
+            <img src={selectedImage} alt="Product preview" style={{ width: '100%', height: 'auto', maxWidth: popupSize, display: 'block', margin: '0 auto' }} />
+            <button onClick={() => setSelectedImage(null)} style={{ marginTop: '20px', padding: '10px 28px', backgroundColor: 'black', color: 'white', border: 'none', borderRadius: '30px', cursor: 'pointer', fontSize: '14px' }}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
