@@ -10,22 +10,18 @@ function App() {
   const [showCart, setShowCart] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   
-  // Create ref for Jesus Collection section
   const jesusCollectionRef = useRef(null);
 
-  // Product options for custom design
   const productOptions = [
     { id: 1, name: 'T-Shirt', price: 9.99, priceDisplay: '£9.99', icon: '👕', description: 'Classic fit • 100% cotton • Premium quality' },
     { id: 2, name: 'Sweatshirt', price: 19.99, priceDisplay: '£19.99', icon: '👚', description: 'Oversized fit • Fleece lined • Comfortable' },
     { id: 3, name: 'Hoodie', price: 29.99, priceDisplay: '£29.99', icon: '🧥', description: 'Premium hoodie • Kangaroo pocket • Adjustable hood' }
   ];
 
-  // Scroll to Jesus Collection
   const scrollToJesusCollection = () => {
     jesusCollectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // ALL PRODUCT COLLECTIONS
   const collections = [
     {
       title: 'Identity Collection',
@@ -91,7 +87,6 @@ function App() {
     }
   ];
 
-  // Add to cart function
   const addToCart = (item) => {
     setCart([...cart, { 
       ...item, 
@@ -101,12 +96,10 @@ function App() {
     alert(`${item.name} added to cart!`);
   };
 
-  // Remove from cart function
   const removeFromCart = (id) => {
     setCart(cart.filter(item => item.id !== id));
   };
 
-  // Get cart total in pounds
   const getCartTotalPounds = () => {
     return cart.reduce((total, item) => {
       const price = typeof item.price === 'number' ? item.price : parseFloat(item.price);
@@ -114,12 +107,10 @@ function App() {
     }, 0);
   };
 
-  // Get cart total display
   const getCartTotalDisplay = () => {
     return `£${getCartTotalPounds().toFixed(2)}`;
   };
 
-  // Proceed to Stripe checkout with serverless function
   const proceedToCheckout = async () => {
     const totalPounds = getCartTotalPounds();
     
@@ -131,14 +122,12 @@ function App() {
     setIsCheckingOut(true);
 
     try {
-      // Prepare cart items for Stripe
       const lineItems = cart.map(item => ({
         name: item.name,
         price: item.price,
         image: item.image
       }));
 
-      // Call the serverless function
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: {
@@ -150,9 +139,7 @@ function App() {
       const data = await response.json();
 
       if (response.ok && data.url) {
-        // Redirect to Stripe Checkout
         window.location.href = data.url;
-        // Clear cart after successful redirect
         setCart([]);
         setShowCart(false);
       } else {
@@ -203,7 +190,6 @@ function App() {
   const imageSize = '240px';
   const popupSize = '576px';
 
-  // Custom Design Page
   if (showCustomPage) {
     if (showLogoGallery && selectedProduct) {
       return (
@@ -267,11 +253,9 @@ function App() {
     );
   }
 
-  // Main Shop Page
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       
-      {/* Shopping Cart Sidebar */}
       {showCart && (
         <div style={{
           position: 'fixed',
@@ -336,14 +320,12 @@ function App() {
         </div>
       )}
 
-      {/* Cart Icon */}
       <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
         <button onClick={() => setShowCart(true)} style={{ backgroundColor: 'black', color: 'white', padding: '12px 18px', borderRadius: '50px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
           🛒 Cart {cart.length > 0 && <span style={{ backgroundColor: '#b8860b', borderRadius: '50%', padding: '2px 8px', fontSize: '12px' }}>{cart.length}</span>}
         </button>
       </div>
 
-      {/* HERO SECTION */}
       <div style={{ padding: '80px 20px', textAlign: 'center', background: 'linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%)' }}>
         <p style={{ letterSpacing: '3px', textTransform: 'uppercase', fontSize: '14px', marginBottom: '16px', color: '#666' }}>Luxury Christian Streetwear</p>
         <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px' }}>King of Kings</h1>
@@ -358,7 +340,6 @@ function App() {
         </button>
       </div>
 
-      {/* WHO WE ARE SECTION */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px', alignItems: 'center' }}>
           <div>
@@ -368,11 +349,10 @@ function App() {
             <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6', marginBottom: '20px' }}>In a culture constantly searching for identity and hope, we believe believers are called to be a light. Our mission is to equip you with high-quality, stylish apparel that makes sharing your faith as simple as getting dressed in the morning.</p>
             <p style={{ color: '#555', fontSize: '16px', lineHeight: '1.6' }}>Every shirt is a seed, every hoodie a potential prayer, and every design an opportunity to point someone back to the love of Jesus Christ.</p>
           </div>
-          <div style={{ backgroundColor: '#f0f0f0', borderRadius: '24px', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url(https://placehold.co/600x400/e2e8f0/666?text=Our+Mission)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' }}></div>
+          <div style={{ backgroundColor: '#f0f0f0', borderRadius: '24px', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url(https://placehold.co/600x400/e2e8f0/666?text=Our+Mission)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
         </div>
       </div>
 
-      {/* OUR PROMISE SECTION */}
       <div style={{ backgroundColor: '#fafafa', padding: '80px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', textAlign: 'center', marginBottom: '16px' }}>Our Promise</h2>
@@ -385,7 +365,6 @@ function App() {
         </div>
       </div>
 
-      {/* PRODUCT COLLECTIONS */}
       {collections.map((collection, idx) => (
         <div 
           key={idx} 
@@ -415,7 +394,6 @@ function App() {
         </div>
       ))}
 
-      {/* CUSTOM DESIGN SECTION */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
         <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px', background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)' }}>
           <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
@@ -424,7 +402,6 @@ function App() {
         </div>
       </div>
 
-      {/* FOOTER */}
       <div style={{ backgroundColor: '#f5f5f5', padding: '40px 20px', marginTop: '40px', borderTop: '1px solid #eee' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
           <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>King of Kings</h3>
@@ -434,7 +411,6 @@ function App() {
         </div>
       </div>
 
-      {/* LIGHTBOX POPUP */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
