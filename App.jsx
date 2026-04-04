@@ -8,6 +8,7 @@ function App() {
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
   
   // Create ref for Jesus Collection section
   const jesusCollectionRef = useRef(null);
@@ -24,7 +25,7 @@ function App() {
     jesusCollectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // ALL PRODUCT COLLECTIONS - REORDERED
+  // ALL PRODUCT COLLECTIONS
   const collections = [
     {
       title: 'Identity Collection',
@@ -105,7 +106,7 @@ function App() {
     setCart(cart.filter(item => item.id !== id));
   };
 
-  // Get cart total in pounds (for Stripe, we need pence)
+  // Get cart total in pounds
   const getCartTotalPounds = () => {
     return cart.reduce((total, item) => {
       const price = typeof item.price === 'number' ? item.price : parseFloat(item.price);
@@ -118,36 +119,51 @@ function App() {
     return `£${getCartTotalPounds().toFixed(2)}`;
   };
 
-  // Proceed to Stripe checkout with dynamic amount
-  const proceedToCheckout = () => {
+  // Proceed to Stripe checkout with serverless function
+  const proceedToCheckout = async () => {
     const totalPounds = getCartTotalPounds();
     
     if (totalPounds === 0) {
       alert('Your cart is empty. Please add items before checking out.');
       return;
     }
-    
-    // Create a description of items for Stripe
-    const itemDescriptions = cart.map(item => item.name).join(', ');
-    
-    // You'll need to replace this with your actual Stripe payment link
-    // For dynamic amounts, you need to use Stripe Checkout API or a payment link with amount parameter
-    // Since you have a fixed Stripe link, I'll redirect with the amount as a query parameter
-    // Note: Your Stripe link may need to support amount parameters
-    
-    // For now, we'll open Stripe with the total amount in the URL (if supported)
-    const stripeBaseUrl = 'https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01';
-    
-    // Some Stripe payment links support ?amount=XX parameter
-    // Try adding the amount as a query parameter
-    const amountInPence = Math.round(totalPounds * 100);
-    const stripeUrl = `${stripeBaseUrl}?amount=${amountInPence}&description=${encodeURIComponent(itemDescriptions)}`;
-    
-    window.open(stripeUrl, '_blank');
-    
-    // Optional: Clear cart after checkout
-    // setCart([]);
-    // setShowCart(false);
+
+    setIsCheckingOut(true);
+
+    try {
+      // Prepare cart items for Stripe
+      const lineItems = cart.map(item => ({
+        name: item.name,
+        price: item.price,
+        image: item.image
+      }));
+
+      // Call the serverless function
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: lineItems }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+        // Clear cart after successful redirect
+        setCart([]);
+        setShowCart(false);
+      } else {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsCheckingOut(false);
+    }
   };
 
   const handleCustomDesign = () => {
@@ -185,7 +201,7 @@ function App() {
   };
 
   const imageSize = '240px';
-  const popupSize = '576px'; // 6 inches
+  const popupSize = '576px';
 
   // Custom Design Page
   if (showCustomPage) {
@@ -296,8 +312,23 @@ function App() {
                   <strong>Total:</strong>
                   <strong>{getCartTotalDisplay()}</strong>
                 </div>
-                <button onClick={proceedToCheckout} style={{ backgroundColor: 'black', color: 'white', padding: '15px', borderRadius: '30px', border: 'none', cursor: 'pointer', width: '100%', fontSize: '16px', fontWeight: 'bold' }}>
-                  Proceed to Checkout • {getCartTotalDisplay()}
+                <button 
+                  onClick={proceedToCheckout} 
+                  disabled={isCheckingOut}
+                  style={{ 
+                    backgroundColor: 'black', 
+                    color: 'white', 
+                    padding: '15px', 
+                    borderRadius: '30px', 
+                    border: 'none', 
+                    cursor: isCheckingOut ? 'not-allowed' : 'pointer', 
+                    width: '100%', 
+                    fontSize: '16px', 
+                    fontWeight: 'bold',
+                    opacity: isCheckingOut ? 0.7 : 1
+                  }}
+                >
+                  {isCheckingOut ? 'Processing...' : `Proceed to Checkout • ${getCartTotalDisplay()}`}
                 </button>
               </div>
             </>
@@ -403,17 +434,8 @@ function App() {
         </div>
       </div>
 
-      {/* LIGHTBOX POPUP - 6 INCHES */}
+      {/* LIGHTBOX POPUP */}
       {selectedImage && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, cursor: 'pointer' }} onClick={() => setSelectedImage(null)}>
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '16px', maxWidth: popupSize, width: '90%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
-            <img src={selectedImage} alt="Product preview" style={{ width: '100%', height: 'auto', maxWidth: popupSize, display: 'block', margin: '0 auto' }} />
-            <button onClick={() => setSelectedImage(null)} style={{ marginTop: '20px', padding: '10px 28px', backgroundColor: 'black', color: 'white', border: 'none', borderRadius: '30px', cursor: 'pointer', fontSize: '14px' }}>Close</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default App;
+            <img src={selectedImage} alt="Product preview" style={{ width: '100%', height: 'auto', maxWidth: popupSize, display: 'block', margin
