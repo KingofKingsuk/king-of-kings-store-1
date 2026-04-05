@@ -1,6 +1,7 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
 export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -8,10 +9,21 @@ export default async function handler(req, res) {
 
   try {
     const { items } = req.body;
+    console.log('Received items:', items);
 
-    // Validate cart is not empty
-    if (!items || items.length === 0) {
-      return res.status(400).json({ error: 'Cart is empty' });
+    // Check if Stripe key exists
+    const stripeKey = process.env.STRIPE_SECRET_KEY;
+    
+    if (!stripeKey) {
+      return res.status(500).json({ error: 'STRIPE_SECRET_KEY is missing in environment variables' });
+    }
+
+    // Test if Stripe can be loaded
+    let stripe;
+    try {
+      stripe = require('stripe')(stripeKey);
+    } catch (e) {
+      return res.status(500).json({ error: 'Stripe module failed to load: ' + e.message });
     }
 
     // Transform cart items into Stripe line items
