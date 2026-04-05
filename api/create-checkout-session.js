@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         product_data: {
           name: item.name,
         },
-        unit_amount: Math.round(item.price * 100), // Convert to pence
+        unit_amount: Math.round(item.price * 100),
       },
       quantity: 1,
     }));
@@ -36,9 +36,9 @@ export default async function handler(req, res) {
     });
 
     // Return the session URL
-    res.status(200).json({ url: session.url });
+    return res.status(200).json({ url: session.url });
   } catch (error) {
     console.error('Stripe error:', error);
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 }
