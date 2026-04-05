@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'https://king-of-kings-store-1.vercel.app/success',
+      success_url: 'https://king-of-kings-store-1.vercel.app/',
       cancel_url: 'https://king-of-kings-store-1.vercel.app/',
     });
 
