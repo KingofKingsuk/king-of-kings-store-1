@@ -1,4 +1,9 @@
+import Stripe from 'stripe';
+
 export default async function handler(req, res) {
+  // Initialize Stripe with the secret key
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   
@@ -12,18 +17,8 @@ export default async function handler(req, res) {
     console.log('Received items:', items);
 
     // Check if Stripe key exists
-    const stripeKey = process.env.STRIPE_SECRET_KEY;
-    
-    if (!stripeKey) {
+    if (!process.env.STRIPE_SECRET_KEY) {
       return res.status(500).json({ error: 'STRIPE_SECRET_KEY is missing in environment variables' });
-    }
-
-    // Test if Stripe can be loaded
-    let stripe;
-    try {
-      stripe = require('stripe')(stripeKey);
-    } catch (e) {
-      return res.status(500).json({ error: 'Stripe module failed to load: ' + e.message });
     }
 
     // Transform cart items into Stripe line items
