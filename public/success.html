@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful - King of Kings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .success-container {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checkmark {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        h1 {
+            font-size: 32px;
+            color: #111;
+            margin-bottom: 16px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .order-details {
+            background: #f5f5f5;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px 0;
+            text-align: left;
+        }
+        .order-details h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #111;
+        }
+        .order-details p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s, background 0.2s;
+            margin: 8px;
+        }
+        .button:hover {
+            background: #333;
+            transform: scale(1.02);
+        }
+        .button-secondary {
+            background: transparent;
+            color: black;
+            border: 1px solid #ddd;
+        }
+        .button-secondary:hover {
+            background: #f5f5f5;
+        }
+        .scripture {
+            margin-top: 32px;
+            font-size: 14px;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark">✅</div>
+        <h1>Thank You for Your Order!</h1>
+        <p>Your order has been successfully placed. You will receive a confirmation email shortly with your order details.</p>
+        
+        <div class="order-details">
+            <h3>What happens next?</h3>
+            <p>📧 <strong>Order Confirmation:</strong> Check your email for order details</p>
+            <p>🖨️ <strong>Processing:</strong> We'll print your custom design within 1-2 days</p>
+            <p>📦 <strong>Shipping:</strong> You'll receive tracking information via email</p>
+            <p>🙏 <strong>Thank you:</strong> A portion of your purchase supports missions</p>
+        </div>
+        
+        <a href="/" class="button">Continue Shopping</a>
+        <a href="/#identity-collection" class="button button-secondary">View Collections</a>
+        
+        <div class="scripture">
+            "Therefore go and make disciples of all nations..." - Matthew 28:19
+        </div>
+    </div>
+</body>
+</html>
