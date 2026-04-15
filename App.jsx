@@ -11,11 +11,9 @@ function App() {
   const [selectedSizes, setSelectedSizes] = useState({});
   
   const jesusCollectionRef = useRef(null);
-
-  // Size options
   const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
 
-  // YOUR Stripe Payment Links
+  // DIRECT STRIPE PAYMENT LINKS - NO API CALLS
   const stripeLinks = {
     9.99: 'https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01',
     14.99: 'https://buy.stripe.com/3cI28sa8JdfUbim7vbdUY02',
@@ -123,16 +121,12 @@ function App() {
   };
 
   const getCartTotalPounds = () => {
-    return cart.reduce((total, item) => {
-      const price = typeof item.price === 'number' ? item.price : parseFloat(item.price);
-      return total + price;
-    }, 0);
+    return cart.reduce((total, item) => total + (typeof item.price === 'number' ? item.price : parseFloat(item.price)), 0);
   };
 
-  const getCartTotalDisplay = () => {
-    return `£${getCartTotalPounds().toFixed(2)}`;
-  };
+  const getCartTotalDisplay = () => `£${getCartTotalPounds().toFixed(2)}`;
 
+  // DIRECT CHECKOUT - NO SERVERLESS FUNCTION
   const proceedToCheckout = () => {
     const totalPounds = getCartTotalPounds();
     
@@ -141,42 +135,25 @@ function App() {
       return;
     }
 
-    // Find the closest matching payment link
-    let selectedLink = null;
-    let matchedAmount = null;
+    // Round to 2 decimal places for matching
+    const roundedTotal = Math.round(totalPounds * 100) / 100;
     
-    // Check for exact match
-    if (stripeLinks[totalPounds]) {
-      selectedLink = stripeLinks[totalPounds];
-      matchedAmount = totalPounds;
-    } else {
-      // Try to find the closest link
-      const amounts = Object.keys(stripeLinks).map(Number).sort((a, b) => a - b);
-      for (const amount of amounts) {
-        if (Math.abs(amount - totalPounds) < 0.01) {
-          selectedLink = stripeLinks[amount];
-          matchedAmount = amount;
-          break;
-        }
+    // Find matching Stripe link
+    let selectedLink = null;
+    for (const [amount, link] of Object.entries(stripeLinks)) {
+      if (Math.abs(parseFloat(amount) - roundedTotal) < 0.01) {
+        selectedLink = link;
+        break;
       }
     }
 
     if (!selectedLink) {
-      alert(`Your total is £${totalPounds.toFixed(2)}. Please contact us for payment as this amount requires a custom link.`);
+      alert(`Your total is £${roundedTotal.toFixed(2)}. Please contact us for payment.`);
       return;
     }
 
-    // Create order summary
-    const itemNames = cart.map(item => item.nameWithSize || item.name).join(', ');
-    
-    // Redirect to Stripe
+    // Open Stripe payment link
     window.open(selectedLink, '_blank');
-    
-    // Optional: Clear cart after checkout (uncomment if desired)
-    // setTimeout(() => {
-    //   setCart([]);
-    //   setShowCart(false);
-    // }, 1000);
   };
 
   const handleCustomDesign = () => {
@@ -194,16 +171,6 @@ function App() {
   };
 
   const handleLogoSelect = (logo) => {
-    setSelectedLogo(logo);
-    const customItem = {
-      id: `custom-${Date.now()}`,
-      name: `${selectedProduct.name} with ${logo.name} Design`,
-      price: selectedProduct.price,
-      priceDisplay: `£${selectedProduct.price.toFixed(2)}`,
-      image: logo.image,
-      type: 'custom'
-    };
-    
     const size = prompt('Select size: S, M, L, XL, XXL');
     if (!size) {
       alert('Size is required');
@@ -211,12 +178,16 @@ function App() {
     }
     
     setCart([...cart, { 
-      ...customItem, 
       id: Date.now(),
+      name: `${selectedProduct.name} with ${logo.name} Design`,
+      nameWithSize: `${selectedProduct.name} with ${logo.name} Design (${size})`,
+      price: selectedProduct.price,
+      priceDisplay: `£${selectedProduct.price.toFixed(2)}`,
+      image: logo.image,
       size: size,
-      nameWithSize: `${customItem.name} (${size})`
+      type: 'custom'
     }]);
-    alert(`${customItem.name} (${size}) added to cart!`);
+    alert(`Custom design added to cart!`);
     setShowLogoGallery(false);
     setSelectedProduct(null);
     setSelectedLogo(null);
@@ -407,11 +378,7 @@ function App() {
       </div>
 
       {collections.map((collection, idx) => (
-        <div 
-          key={idx} 
-          ref={collection.ref || null}
-          style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}
-        >
+        <div key={idx} ref={collection.ref || null} style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2 style={{ fontSize: '36px', fontWeight: 'bold', margin: '0 0 8px 0' }}>{collection.title}</h2>
             <p style={{ color: '#666', margin: '0' }}>{collection.subtitle}</p>
@@ -424,33 +391,14 @@ function App() {
                 </div>
                 <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 15px 0', textAlign: 'center' }}>{product.name}</h3>
-                  
-                  {/* Size Selection Buttons */}
                   <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
                     {sizeOptions.map(size => (
-                      <button
-                        key={size}
-                        onClick={() => handleSizeSelect(`${product.id}-${i}`, size)}
-                        style={{
-                          backgroundColor: selectedSizes[`${product.id}-${i}`] === size ? '#b8860b' : '#f0f0f0',
-                          color: selectedSizes[`${product.id}-${i}`] === size ? 'white' : '#333',
-                          border: 'none',
-                          borderRadius: '8px',
-                          padding: '6px 12px',
-                          cursor: 'pointer',
-                          fontSize: '12px',
-                          fontWeight: '500',
-                          transition: 'all 0.2s'
-                        }}
-                      >
-                        {size}
-                      </button>
+                      <button key={size} onClick={() => handleSizeSelect(`${product.id}-${i}`, size)} style={{ backgroundColor: selectedSizes[`${product.id}-${i}`] === size ? '#b8860b' : '#f0f0f0', color: selectedSizes[`${product.id}-${i}`] === size ? 'white' : '#333', border: 'none', borderRadius: '8px', padding: '6px 12px', cursor: 'pointer', fontSize: '12px', fontWeight: '500' }}>{size}</button>
                     ))}
                   </div>
-                  
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', gap: '10px' }}>
                     <span style={{ fontSize: '22px', fontWeight: 'bold', color: '#000' }}>{product.priceDisplay}</span>
-                    <button onClick={() => addToCart(product, selectedSizes[`${product.id}-${i}`])} style={{ backgroundColor: 'black', color: 'white', padding: '10px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'black'}>Add to Cart</button>
+                    <button onClick={() => addToCart(product, selectedSizes[`${product.id}-${i}`])} style={{ backgroundColor: 'black', color: 'white', padding: '10px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500' }}>Add to Cart</button>
                   </div>
                 </div>
               </div>
@@ -463,7 +411,7 @@ function App() {
         <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px', background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)' }}>
           <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
           <p style={{ color: '#ccc', margin: '0 0 24px 0', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>Personal scripture, declarations, and faith-led typography. Wear your testimony.</p>
-          <button onClick={handleCustomDesign} style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>Start Custom Design →</button>
+          <button onClick={handleCustomDesign} style={{ backgroundColor: 'white', color: 'black', padding: '12px 32px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: '500' }}>Start Custom Design →</button>
         </div>
       </div>
 
