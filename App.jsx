@@ -50,7 +50,7 @@ function App() {
       title: 'Signature Collection',
       subtitle: 'Luxury typography pieces',
       products: [
-        { id: 'signature-1', name: 'EL Elyon 1 Tee', price: 9.99, priceDisplay: '£9.99', image: '/el elyon 1 mockup.png' },
+        // EL Elyon 1 Tee has been REMOVED
         { id: 'signature-2', name: 'EL Elyon 2 Tee', price: 9.99, priceDisplay: '£9.99', image: '/el elyon 2 mockup.png' },
         { id: 'signature-3', name: 'EL Elyon White Tee', price: 9.99, priceDisplay: '£9.99', image: '/el elyon white mockup.png' }
       ]
