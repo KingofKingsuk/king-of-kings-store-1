@@ -15,14 +15,14 @@ function App() {
   // Size options
   const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
 
-  // Stripe Payment Links - REPLACE THESE WITH YOUR ACTUAL LINKS
+  // YOUR Stripe Payment Links
   const stripeLinks = {
-    9.99: 'https://buy.stripe.com/YOUR_9.99_LINK_HERE',
-    14.99: 'https://buy.stripe.com/YOUR_14.99_LINK_HERE',
-    19.99: 'https://buy.stripe.com/YOUR_19.99_LINK_HERE',
-    29.99: 'https://buy.stripe.com/YOUR_29.99_LINK_HERE',
-    35.00: 'https://buy.stripe.com/YOUR_35.00_LINK_HERE',
-    40.00: 'https://buy.stripe.com/YOUR_40.00_LINK_HERE',
+    9.99: 'https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01',
+    14.99: 'https://buy.stripe.com/3cI28sa8JdfUbim7vbdUY02',
+    19.99: 'https://buy.stripe.com/00wcN6ft35Ns2LQ16NdUY03',
+    29.99: 'https://buy.stripe.com/cNi14o94Ffo2cmqbLrdUY06',
+    35.00: 'https://buy.stripe.com/00wcN6ft35Ns2LQ16NdUY03',
+    40.00: 'https://buy.stripe.com/aFa5kE3Kl0t80DIaHndUY07',
   };
 
   const productOptions = [
@@ -142,18 +142,27 @@ function App() {
     }
 
     // Find the closest matching payment link
-    const amounts = Object.keys(stripeLinks).map(Number).sort((a, b) => a - b);
     let selectedLink = null;
+    let matchedAmount = null;
     
-    for (const amount of amounts) {
-      if (Math.abs(amount - totalPounds) < 0.01) {
-        selectedLink = stripeLinks[amount];
-        break;
+    // Check for exact match
+    if (stripeLinks[totalPounds]) {
+      selectedLink = stripeLinks[totalPounds];
+      matchedAmount = totalPounds;
+    } else {
+      // Try to find the closest link
+      const amounts = Object.keys(stripeLinks).map(Number).sort((a, b) => a - b);
+      for (const amount of amounts) {
+        if (Math.abs(amount - totalPounds) < 0.01) {
+          selectedLink = stripeLinks[amount];
+          matchedAmount = amount;
+          break;
+        }
       }
     }
 
     if (!selectedLink) {
-      alert(`Your total is £${totalPounds.toFixed(2)}. Please contact us for payment.`);
+      alert(`Your total is £${totalPounds.toFixed(2)}. Please contact us for payment as this amount requires a custom link.`);
       return;
     }
 
