@@ -38,10 +38,10 @@ function App() {
       title: 'Identity Collection',
       subtitle: 'Who you are in Christ',
       products: [
-        { id: 'identity-1', name: 'Christian Identity Front Black Tee', price: 9.99, priceDisplay: '£9.99', image: '/christian identity front black mockup.png' },
+        { id: 'identity-1', name: 'Christian Identity Front Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/christian identity front black mockup.png' },
         { id: 'identity-2', name: 'Christian Identity Tee', price: 9.99, priceDisplay: '£9.99', image: '/christian identity mockup.png' },
-        { id: 'identity-3', name: 'My Identity Tee', price: 9.99, priceDisplay: '£9.99', image: '/my identity mockup.png' },
-        { id: 'identity-4', name: 'Redeemed Front Tee', price: 9.99, priceDisplay: '£9.99', image: '/redeemed front mockup.png' },
+        { id: 'identity-3', name: 'My Identity Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/my identity mockup.png' },
+        { id: 'identity-4', name: 'Redeemed Front Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/redeemed front mockup.png' },
         { id: 'identity-5', name: 'The Almighty White Tee', price: 9.99, priceDisplay: '£9.99', image: '/the almighty white mockup.png' },
         { id: 'identity-6', name: 'Light of The World Tee', price: 9.99, priceDisplay: '£9.99', image: '/Light of the world mockup.png' }
       ]
@@ -62,7 +62,7 @@ function App() {
         { id: 'royal-1', name: 'King of Kings Black Tee', price: 9.99, priceDisplay: '£9.99', image: '/King of Kings black mockup.png' },
         { id: 'royal-2', name: 'King of Kings Second Tee', price: 9.99, priceDisplay: '£9.99', image: '/King of Kings second mockup.png' },
         { id: 'royal-3', name: 'The Prince of Peace Tee', price: 9.99, priceDisplay: '£9.99', image: '/the prince of peace mockup.png' },
-        { id: 'royal-4', name: 'Prince of Peace Sweat', price: 19.99, priceDisplay: '£19.99', image: '/prince of peace sweat mockup.png' }
+        { id: 'royal-4', name: 'Prince of Peace Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/prince of peace sweat mockup.png' }
       ]
     },
     {
@@ -70,10 +70,10 @@ function App() {
       subtitle: 'Declare His name boldly',
       ref: jesusCollectionRef,
       products: [
-        { id: 'jesus-1', name: 'Jesus Christ White Tee', price: 9.99, priceDisplay: '£9.99', image: '/jesus christ white mockup.png' },
-        { id: 'jesus-2', name: 'Jesus Cross Tee', price: 9.99, priceDisplay: '£9.99', image: '/jesus cross mockup.png' },
-        { id: 'jesus-3', name: 'Jesus Tee', price: 9.99, priceDisplay: '£9.99', image: '/jesus mockup.png' },
-        { id: 'jesus-4', name: 'Jesus The Way Front Tee', price: 9.99, priceDisplay: '£9.99', image: '/jesus the way front mockup.png' }
+        { id: 'jesus-1', name: 'Jesus Christ White Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/jesus christ white mockup.png' },
+        { id: 'jesus-2', name: 'Jesus Cross Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/jesus cross mockup.png' },
+        { id: 'jesus-3', name: 'Jesus Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/jesus mockup.png' },
+        { id: 'jesus-4', name: 'Jesus The Way Front Sweatshirt', price: 14.99, priceDisplay: '£14.99', image: '/jesus the way front mockup.png' }
       ]
     },
     {
@@ -136,7 +136,6 @@ function App() {
       return;
     }
 
-    // Show email modal to collect customer email
     setShowEmailModal(true);
   };
 
@@ -208,7 +207,6 @@ function App() {
       type: 'custom'
     };
     
-    // For custom items, ask for size
     const size = prompt('Select size: S, M, L, XL, XXL');
     if (!size) {
       alert('Size is required');
