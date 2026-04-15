@@ -31,8 +31,8 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'https://king-of-kings-store-1.vercel.app/success.html',
-      cancel_url: 'https://king-of-kings-store-1.vercel.app/',
+      success_url: 'https://kingofkings.uk/success.html',
+      cancel_url: 'https://kingofkings.uk/',
       customer_email: email,
       shipping_address_collection: {
         allowed_countries: ['GB', 'US', 'CA', 'AU', 'DE', 'FR', 'IT', 'ES'],
