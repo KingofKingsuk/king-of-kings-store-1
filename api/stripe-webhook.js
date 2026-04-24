@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     console.log(`Amount: ${amount}`);
     
     // 👇👇👇 REPLACE THIS EMAIL WITH YOUR REAL EMAIL 👇👇👇
-    const YOUR_EMAIL_ADDRESS = 'kingofkingsuk@gmail.com';
+    const YOUR_EMAIL_ADDRESS = 'JohnOlorunshe@KingofKingsGB862.onmicrosoft.com';
     // 👆👆👆 CHANGE THIS TO YOUR ACTUAL EMAIL 👆👆👆
     
     // Send email notification using Resend
