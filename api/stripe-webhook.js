@@ -1,7 +1,7 @@
 // api/stripe-webhook.js
 import Stripe from 'stripe';
+import { Resend } from 'resend';
 
-// This is a special config for Vercel to handle raw body parsing
 export const config = {
   api: {
     bodyParser: false,
@@ -44,48 +44,68 @@ export default async function handler(req, res) {
     const session = event.data.object;
     
     // Extract order details
-    const orderDetails = {
-      id: session.id,
-      customerEmail: session.customer_details?.email || 'No email provided',
-      customerName: session.customer_details?.name || 'No name provided',
-      amount: `£${(session.amount_total / 100).toFixed(2)}`,
-      items: [], // Stripe payment links don't include line items automatically
-      timestamp: new Date().toISOString(),
-    };
+    const customerEmail = session.customer_details?.email || 'No email provided';
+    const customerName = session.customer_details?.name || 'No name provided';
+    const amount = `£${(session.amount_total / 100).toFixed(2)}`;
+    const orderId = session.id;
+    const timestamp = new Date().toLocaleString();
     
     console.log('🛍️ NEW ORDER RECEIVED!');
-    console.log('Order ID:', orderDetails.id);
-    console.log('Customer:', orderDetails.customerEmail);
-    console.log('Amount:', orderDetails.amount);
+    console.log(`Order ID: ${orderId}`);
+    console.log(`Customer: ${customerEmail}`);
+    console.log(`Amount: ${amount}`);
     
-    // Send email notification to you
-    await sendAdminEmail(orderDetails);
+    // 👇👇👇 REPLACE THIS EMAIL WITH YOUR REAL EMAIL 👇👇👇
+    const YOUR_EMAIL_ADDRESS = 'kingofkingsuk@gmail.com';
+    // 👆👆👆 CHANGE THIS TO YOUR ACTUAL EMAIL 👆👆👆
+    
+    // Send email notification using Resend
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    try {
+      const { data, error } = await resend.emails.send({
+        from: 'onboarding@resend.dev', // Resend's default for testing
+        to: YOUR_EMAIL_ADDRESS,
+        subject: `🛍️ New King of Kings Order! ${orderId.slice(-8)}`,
+        html: `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+              h2 { color: #b8860b; }
+              .order-details { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; }
+              .button { background: #b8860b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h2>🛍️ New Order Received!</h2>
+              <div class="order-details">
+                <p><strong>Customer:</strong> ${customerName}</p>
+                <p><strong>Email:</strong> ${customerEmail}</p>
+                <p><strong>Order ID:</strong> ${orderId}</p>
+                <p><strong>Amount:</strong> ${amount}</p>
+                <p><strong>Time:</strong> ${timestamp}</p>
+              </div>
+              <a href="https://dashboard.stripe.com/payments/${orderId}" class="button">View in Stripe Dashboard</a>
+              <p style="font-size: 12px; color: #999; margin-top: 20px;">King of Kings • Faith-led apparel</p>
+            </div>
+          </body>
+          </html>
+        `,
+      });
+      
+      if (error) {
+        console.error('Email sending failed:', error);
+      } else {
+        console.log('Email sent successfully to:', YOUR_EMAIL_ADDRESS);
+      }
+    } catch (emailError) {
+      console.error('Failed to send email:', emailError);
+    }
   }
 
   res.status(200).json({ received: true });
-}
-
-// Function to send email notification to the store owner
-async function sendAdminEmail(order) {
-  // You need a service like Resend, SendGrid, or EmailJS
-  // For now, we'll log to console – you'll add your email service here
-  
-  console.log('📧 Would send email to: admin@kingofkings.uk');
-  console.log(`New order from ${order.customerEmail} for ${order.amount}`);
-  
-  // Example using Resend (free tier available)
-  // const resend = new Resend(process.env.RESEND_API_KEY);
-  // await resend.emails.send({
-  //   from: 'orders@kingofkings.uk',
-  //   to: 'your-email@gmail.com',
-  //   subject: `New Order! ${order.id}`,
-  //   html: `
-  //     <h1>New Order Received!</h1>
-  //     <p><strong>Customer:</strong> ${order.customerName} (${order.customerEmail})</p>
-  //     <p><strong>Order ID:</strong> ${order.id}</p>
-  //     <p><strong>Amount:</strong> ${order.amount}</p>
-  //     <p><strong>Time:</strong> ${order.timestamp}</p>
-  //     <p>View in Stripe: https://dashboard.stripe.com/payments/${order.id}</p>
-  //   `,
-  // });
 }
