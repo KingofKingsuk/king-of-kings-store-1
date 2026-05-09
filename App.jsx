@@ -18,6 +18,7 @@ function App() {
     11.99: 'https://buy.stripe.com/aFaaEY5Stb7MdqubLrdUY01',
     17.99: 'https://buy.stripe.com/3cI28sa8JdfUbim7vbdUY02',
     24.99: 'https://buy.stripe.com/00wcN6ft35Ns2LQ16NdUY03',
+    27.99: 'https://buy.stripe.com/cNi14o94Ffo2cmqbLrdUY06',
     29.99: 'https://buy.stripe.com/cNi14o94Ffo2cmqbLrdUY06',
     35.00: 'https://buy.stripe.com/00wcN6ft35Ns2LQ16NdUY03',
     40.00: 'https://buy.stripe.com/aFa5kE3Kl0t80DIaHndUY07',
@@ -76,15 +77,15 @@ function App() {
         { id: 'jesus-1', name: 'Jesus Christ White Long Sleeve', price: 17.99, priceDisplay: '£17.99', image: '/jesus christ white mockup.png' },
         { id: 'jesus-2', name: 'Jesus Cross Long Sleeve', price: 17.99, priceDisplay: '£17.99', image: '/jesus cross mockup.png' },
         { id: 'jesus-3', name: 'Jesus Long Sleeve', price: 17.99, priceDisplay: '£17.99', image: '/jesus mockup.png' },
-        { id: 'jesus-4', name: 'Jesus The Way Front Long Sleeve', price: 17.99, priceDisplay: '£17.99', image: '/jesus the way front mockup.png' }
+        { id: 'jesus-4', name: 'Jesus The Way Front Hoodie', price: 27.99, priceDisplay: '£27.99', image: '/jesus the way front mockup.png' }
       ]
     },
     {
       title: 'Faith Collection',
       subtitle: 'Bold declarations of faith',
       products: [
-        { id: 'faith-1', name: 'Faith Over Fear Tee', price: 11.99, priceDisplay: '£11.99', image: '/faith over fear mockup.png' },
-        { id: 'faith-2', name: 'God Got Me Back Tee', price: 11.99, priceDisplay: '£11.99', image: '/god got me back mockup.png' },
+        { id: 'faith-1', name: 'Faith Over Fear Hoodie', price: 27.99, priceDisplay: '£27.99', image: '/faith over fear mockup.png' },
+        { id: 'faith-2', name: 'God Got Me Hoodie', price: 27.99, priceDisplay: '£27.99', image: '/god got me back mockup.png' },
         { id: 'faith-3', name: 'No Weapon Tee', price: 11.99, priceDisplay: '£11.99', image: '/no weapon mockup.png' }
       ]
     },
@@ -407,5 +408,4 @@ function App() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
         <div style={{ backgroundColor: '#111', color: 'white', padding: '60px 20px', textAlign: 'center', borderRadius: '24px', background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)' }}>
           <h2 style={{ fontSize: '32px', fontWeight: 'bold', margin: '0 0 16px 0' }}>Create Your Own Design</h2>
-          <p style={{ color: '#ccc', margin: '0 0 24px 0', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>Personal scripture, declarations, and faith-led typography. Wear your testimony.</p>
-          <
+          <p style={{ color: '#ccc', margin: '0 0 24px 0', maxWidth: '500px', marginLeft: 'auto
