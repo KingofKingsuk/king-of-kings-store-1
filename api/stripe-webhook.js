@@ -32,7 +32,6 @@ export default async function handler(req, res) {
   let event;
 
   try {
-    // Verify this came from Stripe
     event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
   } catch (err) {
     console.log(`⚠️ Webhook signature verification failed: ${err.message}`);
@@ -43,7 +42,6 @@ export default async function handler(req, res) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     
-    // Extract order details
     const customerEmail = session.customer_details?.email || 'No email provided';
     const customerName = session.customer_details?.name || 'No name provided';
     const amount = `£${(session.amount_total / 100).toFixed(2)}`;
@@ -55,53 +53,27 @@ export default async function handler(req, res) {
     console.log(`Customer: ${customerEmail}`);
     console.log(`Amount: ${amount}`);
     
-    // 👇👇👇 REPLACE THIS EMAIL WITH YOUR REAL EMAIL 👇👇👇
-    const YOUR_EMAIL_ADDRESS = 'JohnOlorunshe@KingofKingsGB862.onmicrosoft.com';
-    // 👆👆👆 CHANGE THIS TO YOUR ACTUAL EMAIL 👆👆👆
+    // YOUR EMAIL ADDRESS FOR NOTIFICATIONS
+    const YOUR_EMAIL_ADDRESS = 'JohnOlorunshe@KingofKingsGB051.onmicrosoft.com';
     
-    // Send email notification using Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
     
     try {
-      const { data, error } = await resend.emails.send({
-        from: 'onboarding@resend.dev', // Resend's default for testing
+      await resend.emails.send({
+        from: 'onboarding@resend.dev',
         to: YOUR_EMAIL_ADDRESS,
         subject: `🛍️ New King of Kings Order! ${orderId.slice(-8)}`,
         html: `
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <style>
-              body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-              .container { max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
-              h2 { color: #b8860b; }
-              .order-details { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; }
-              .button { background: #b8860b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <h2>🛍️ New Order Received!</h2>
-              <div class="order-details">
-                <p><strong>Customer:</strong> ${customerName}</p>
-                <p><strong>Email:</strong> ${customerEmail}</p>
-                <p><strong>Order ID:</strong> ${orderId}</p>
-                <p><strong>Amount:</strong> ${amount}</p>
-                <p><strong>Time:</strong> ${timestamp}</p>
-              </div>
-              <a href="https://dashboard.stripe.com/payments/${orderId}" class="button">View in Stripe Dashboard</a>
-              <p style="font-size: 12px; color: #999; margin-top: 20px;">King of Kings • Faith-led apparel</p>
-            </div>
-          </body>
-          </html>
+          <h2>New Order Received!</h2>
+          <p><strong>Customer:</strong> ${customerName}</p>
+          <p><strong>Email:</strong> ${customerEmail}</p>
+          <p><strong>Order ID:</strong> ${orderId}</p>
+          <p><strong>Amount:</strong> ${amount}</p>
+          <p><strong>Time:</strong> ${timestamp}</p>
+          <p><a href="https://dashboard.stripe.com/payments/${orderId}">View in Stripe Dashboard</a></p>
         `,
       });
-      
-      if (error) {
-        console.error('Email sending failed:', error);
-      } else {
-        console.log('Email sent successfully to:', YOUR_EMAIL_ADDRESS);
-      }
+      console.log('Email sent successfully to:', YOUR_EMAIL_ADDRESS);
     } catch (emailError) {
       console.error('Failed to send email:', emailError);
     }
